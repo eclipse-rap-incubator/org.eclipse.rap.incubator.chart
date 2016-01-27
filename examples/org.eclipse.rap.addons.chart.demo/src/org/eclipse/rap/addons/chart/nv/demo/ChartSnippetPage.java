@@ -22,9 +22,18 @@ public class ChartSnippetPage extends AbstractEntryPoint {
 
   @Override
   public void createContents( Composite parent ) {
-    parent.setLayout( new GridLayout() );
+    parent.setLayout( new GridLayout( 2, true ) );
+    createBarChart( parent );
     createPieChart( parent );
     createLineChart( parent );
+  }
+
+  private static void createBarChart( Composite parent ) {
+    Composite composite = new Composite( parent, SWT.NONE );
+    composite.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
+    composite.setBackground( new Color( parent.getDisplay(), 250, 250, 250 ) );
+    composite.setBackgroundMode( SWT.INHERIT_DEFAULT );
+    new BarChartSnippet().createContents( composite );
   }
 
   private static void createPieChart( Composite parent ) {
@@ -37,7 +46,7 @@ public class ChartSnippetPage extends AbstractEntryPoint {
 
   private static void createLineChart( Composite parent ) {
     Composite composite = new Composite( parent, SWT.NONE );
-    composite.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
+    composite.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true, 2, 1 ) );
     composite.setBackground( new Color( parent.getDisplay(), 250, 250, 250 ) );
     composite.setBackgroundMode( SWT.INHERIT_DEFAULT );
     new LineChartSnippet().createContents( composite );
