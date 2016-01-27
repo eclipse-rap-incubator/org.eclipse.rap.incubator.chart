@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07d9433e_fea02ba6",
+        "filename": "bundles/org.eclipse.rap.addons.chart/js/chart/chart.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Check code style (spaces) everywhere in JS files",
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_5e375708",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/LineChart.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Code style... spaces in if statement",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_1ea86f93",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/LineChart.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Do we need parameter validation? What will happen if format is null or \"not a valid format string\"?",
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_be4b037f",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/LineChart.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Code style... spaces in if statement",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_de4a877a",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/LineChart.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Code style... spaces in if statement",
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_5eb2f700",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/resources/nv-chart.css",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Missing copyright header",
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_be7dc38f",
+        "filename": "examples/org.eclipse.rap.addons.chart.demo/src/org/eclipse/rap/addons/chart/demo/internal/ChartExampleContribution.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Check copyright header (year) everywhere in this bundle.",
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07d9433e_3efd337a",
+        "filename": "tests/org.eclipse.rap.addons.chart.test/js/chart/chart-spec.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-01-27T08:16:53Z",
+      "side": 1,
+      "message": "Missing copyright header",
+      "revId": "3f8f2d187ea4aabb97498b9e9512c68eb54607d7",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    }
+  ]
+}
