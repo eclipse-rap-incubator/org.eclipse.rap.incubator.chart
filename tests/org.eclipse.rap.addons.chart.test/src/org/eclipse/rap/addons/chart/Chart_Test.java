@@ -110,19 +110,19 @@ public class Chart_Test {
   }
 
   @Test( expected = SWTException.class )
-  public void testSetChartData_checksWidget() {
+  public void testSetItems_checksWidget() {
     Chart chart = new Chart( shell, SWT.NONE, "foo" ) {};
     chart.dispose();
 
-    chart.setChartData( new JsonArray() );
+    chart.setItems( new JsonArray() );
   }
 
   @Test
-  public void testSetChartData_isRendered() {
+  public void testSetItems_isRendered() {
     Chart chart = new Chart( shell, SWT.NONE, "foo" ) {};
     JsonArray data = new JsonArray().add( 23 ).add( 42 );
 
-    chart.setChartData( data );
+    chart.setItems( data );
 
     verify( remoteObject ).set( "items", data );
   }

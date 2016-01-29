@@ -11,6 +11,7 @@
 package org.eclipse.rap.addons.chart.basic;
 
 import org.eclipse.rap.addons.chart.NvChart;
+import org.eclipse.rap.json.JsonArray;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -34,6 +35,14 @@ public class PieChart extends NvChart {
   public boolean getShowLabels() {
     checkWidget();
     return showLabels;
+  }
+
+  public void setItems( ChartItem... items ) {
+    JsonArray values = new JsonArray();
+    for( ChartItem item : items ) {
+      values.add( item.toJson() );
+    }
+    setItems( values );
   }
 
 }

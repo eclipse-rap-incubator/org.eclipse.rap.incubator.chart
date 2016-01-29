@@ -10,9 +10,11 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.nv.demo;
 
+import static org.eclipse.rap.addons.chart.nv.demo.Colors.CAT10_COLORS;
+
+import org.eclipse.rap.addons.chart.basic.DataPoint;
 import org.eclipse.rap.addons.chart.basic.LineChart;
-import org.eclipse.rap.json.JsonArray;
-import org.eclipse.rap.json.JsonObject;
+import org.eclipse.rap.addons.chart.basic.LineChartItem;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -61,28 +63,22 @@ public class LineChartSnippet extends AbstractEntryPoint {
   }
 
   private void update() {
-    lineChart.setChartData( createData() );
+    lineChart.setItems( createItems() );
   }
 
-  private static JsonArray createData() {
-    return new JsonArray()
-      .add( createItem( "Series 1", "#ff0000", createRandomSeries() ) )
-      .add( createItem( "Series 2", "#0000ff", createRandomSeries() ) );
+  private static LineChartItem[] createItems() {
+    return new LineChartItem[] {
+      new LineChartItem( createRandomPoints(), "Series 1", CAT10_COLORS[ 0 ] ),
+      new LineChartItem( createRandomPoints(), "Series 2", CAT10_COLORS[ 1 ] )
+    };
   }
 
-  private static JsonObject createItem( String text, String color, JsonArray values ) {
-    return new JsonObject()
-      .add( "key", text )
-      .add( "color", color )
-      .add( "values", values );
-  }
-
-  private static JsonArray createRandomSeries() {
-    JsonArray data = new JsonArray();
-    for( int i = 0; i < 100; i++ ) {
-      data.add( new JsonObject().add( "x", i ).add( "y", Math.random() * 100 ) );
+  private static DataPoint[] createRandomPoints() {
+    DataPoint[] values = new DataPoint[100];
+    for( int i = 0; i < values.length; i++ ) {
+      values[i] = new DataPoint( i, Math.random() * 100 );
     }
-    return data;
+    return values;
   }
 
 }
