@@ -11,6 +11,7 @@
 package org.eclipse.rap.addons.chart.basic;
 
 import org.eclipse.rap.addons.chart.NvChart;
+import org.eclipse.rap.json.JsonArray;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -71,6 +72,14 @@ public class LineChart extends NvChart {
   public String getYAxisFormat() {
     checkWidget();
     return yAxisFormat;
+  }
+
+  public void setItems( LineItem... items ) {
+    JsonArray values = new JsonArray();
+    for( LineItem item : items ) {
+      values.add( item.toJson() );
+    }
+    setItems( values );
   }
 
 }

@@ -10,9 +10,11 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.nv.demo;
 
+
+import static org.eclipse.rap.addons.chart.nv.demo.Colors.CAT10_COLORS;
+
+import org.eclipse.rap.addons.chart.basic.PieItem;
 import org.eclipse.rap.addons.chart.basic.PieChart;
-import org.eclipse.rap.json.JsonArray;
-import org.eclipse.rap.json.JsonObject;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -59,21 +61,17 @@ public class PieChartSnippet extends AbstractEntryPoint {
   }
 
   private void update() {
-    pieChart.setChartData( createData() );
+    pieChart.setItems( createItems() );
   }
 
-  private static JsonArray createData() {
-    return new JsonArray()
-      .add( createItem( "Item 1", "#ff0000", Math.random() * 100 ) )
-      .add( createItem( "Item 2", "#00ff00", Math.random() * 100 ) )
-      .add( createItem( "Item 3", "#0000ff", Math.random() * 100 ) );
-  }
-
-  private static JsonObject createItem( String text, String color, double value ) {
-    return new JsonObject()
-      .add( "label", text )
-      .add( "color", color )
-      .add( "value", value );
+  private static PieItem[] createItems() {
+    return new PieItem[] {
+      new PieItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
+      new PieItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
+      new PieItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
+      new PieItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
+      new PieItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
+    };
   }
 
 }

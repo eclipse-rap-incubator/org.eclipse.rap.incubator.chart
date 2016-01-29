@@ -11,6 +11,8 @@
 package org.eclipse.rap.addons.chart.basic;
 
 import org.eclipse.rap.addons.chart.NvChart;
+import org.eclipse.rap.json.JsonArray;
+import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -34,6 +36,14 @@ public class BarChart extends NvChart {
   public boolean getShowValues() {
     checkWidget();
     return showValues;
+  }
+
+  public void setItems( BarItem... items ) {
+    JsonArray values = new JsonArray();
+    for( BarItem item : items ) {
+      values.add( item.toJson() );
+    }
+    setItems( new JsonArray().add( new JsonObject().add( "values", values ) ) );
   }
 
 }

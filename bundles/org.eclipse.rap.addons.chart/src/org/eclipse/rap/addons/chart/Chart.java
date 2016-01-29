@@ -71,7 +71,7 @@ public abstract class Chart extends Canvas {
     requireJs( registerResource( "chart/chart.js" ) );
   }
 
-  public void setChartData( JsonArray data ) {
+  protected void setItems( JsonArray data ) {
     checkWidget();
     remoteObject.set( "items", data );
   }

@@ -20,7 +20,7 @@ public abstract class NvChart extends Chart {
   private static final String NVD3_JS_URL
     = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js";
 
-  public NvChart( Composite parent, int style, String renderer ) {
+  protected NvChart( Composite parent, int style, String renderer ) {
     super( parent, style, renderer );
     requireJs( NVD3_JS_URL );
     requireCss( NVD3_CSS_URL );

@@ -16,6 +16,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 
 import org.eclipse.rap.json.JsonObject;
+import org.eclipse.rap.json.JsonValue;
 import org.eclipse.rap.rwt.internal.remote.ConnectionImpl;
 import org.eclipse.rap.rwt.remote.Connection;
 import org.eclipse.rap.rwt.remote.RemoteObject;
@@ -143,6 +144,22 @@ public class LineChart_Test {
     chart.setXAxisFormat( chart.getXAxisFormat() );
 
     verify( remoteObject, times( 0 ) ).set( eq( "spacing" ), anyInt() );
+  }
+
+  @Test
+  public void testSetItems() {
+    reset( remoteObject );
+
+    chart.setItems( new LineItem( new DataPoint[] { new DataPoint(1, 2),
+                                                         new DataPoint(3, 4) }, "foo" ),
+                    new LineItem( new DataPoint[] { new DataPoint(2, 4),
+                                                         new DataPoint(6, 8) }, "bar" ) );
+
+    String expected = "[{ \"values\": [{ \"x\": 1, \"y\": 2 },"
+                                    + "{ \"x\": 3, \"y\": 4 }], \"key\": \"foo\" },"
+                     + "{ \"values\": [{ \"x\": 2, \"y\": 4 },"
+                                    + "{ \"x\": 6, \"y\": 8 }], \"key\": \"bar\" }]";
+    verify( remoteObject ).set( "items", JsonValue.readFrom( expected ) );
   }
 
   private Connection fakeConnection( RemoteObject remoteObject ) {
