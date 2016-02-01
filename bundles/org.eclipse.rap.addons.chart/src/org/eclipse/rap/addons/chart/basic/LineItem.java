@@ -16,16 +16,37 @@ import org.eclipse.rap.json.JsonArray;
 import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.graphics.RGB;
 
+
+/**
+ * Represents a line in a line chart.
+ *
+ * @see LineChart
+ */
 public class LineItem {
 
-  private DataPoint[] points;
-  private String text;
-  private RGB color;
+  protected final DataPoint[] points;
+  protected final String text;
+  protected final RGB color;
 
+  /**
+   * Creates a line with the given data points and text. Later changes to the data points won't be
+   * reflected in the chart.
+   *
+   * @param points the data point that form the line
+   * @param text the label text for the line, or <code>null</code> to omit the label
+   */
   public LineItem( DataPoint[] points, String text ) {
     this( points, text, null );
   }
 
+  /**
+   * Creates a line with the given data points, text, and color. Later changes to the data points
+   * won't be reflected in the chart.
+   *
+   * @param points the data point that form the line
+   * @param text the label text for the line, or <code>null</code> to omit the label
+   * @param color the color of this line, or <code>null</code> to use the default color
+   */
   public LineItem( DataPoint[] points, String text, RGB color ) {
     this.points = points;
     this.text = text;
