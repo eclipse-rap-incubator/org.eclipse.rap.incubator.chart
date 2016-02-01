@@ -86,47 +86,26 @@ public class PieChart_Test {
     verify( remoteObject ).call( "setOptions", new JsonObject().add( "showLabels", false ) );
   }
 
-//  @Test
-//  public void testStartAngle_defaultValue() {
-//    assertEquals( 0, chart.getStartAngle(), 0 );
-//  }
-//
-//  @Test
-//  public void testStartAngle_changeValue() {
-//    chart.setStartAngle( 0.5f );
-//
-//    assertEquals( 0.5, chart.getStartAngle(), 0 );
-//  }
-//
-//  @Test
-//  public void testStartAngle_isRendered() {
-//    reset( remoteObject );
-//
-//    chart.setStartAngle( -0.5f );
-//
-//    verify( remoteObject ).call( "setOptions", new JsonObject().add( "startAngle", -Math.PI ) );
-//  }
-//
-//  @Test
-//  public void testEndAngle_defaultValue() {
-//    assertEquals( 1, chart.getEndAngle(), 0 );
-//  }
-//
-//  @Test
-//  public void testEndAngle_changeValue() {
-//    chart.setEndAngle( 0.5f );
-//
-//    assertEquals( 0.5, chart.getEndAngle(), 0 );
-//  }
-//
-//  @Test
-//  public void testEndAngle_isRendered() {
-//    reset( remoteObject );
-//
-//    chart.setEndAngle( 0.5f );
-//
-//    verify( remoteObject ).call( "setOptions", new JsonObject().add( "endAngle", Math.PI ) );
-//  }
+  @Test
+  public void testDonut_defaultValue() {
+    assertFalse( chart.getDonut() );
+  }
+
+  @Test
+  public void testDonut_changeValue() {
+    chart.setDonut( true );
+
+    assertTrue( chart.getDonut() );
+  }
+
+  @Test
+  public void testDonut_isRendered() {
+    reset( remoteObject );
+
+    chart.setDonut( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "donut", true ) );
+  }
 
   @Test
   public void testSetItems() {

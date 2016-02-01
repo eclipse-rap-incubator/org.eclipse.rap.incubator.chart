@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 public class PieChart extends NvChart {
 
   private boolean showLabels = true;
+  private boolean donut;
 
   public PieChart( Composite parent, int style ) {
     super( parent, style, "nv-pie" );
@@ -35,6 +36,17 @@ public class PieChart extends NvChart {
   public boolean getShowLabels() {
     checkWidget();
     return showLabels;
+  }
+
+  public void setDonut( boolean donut ) {
+    if( this.donut != donut ) {
+      this.donut = donut;
+      setOption( "donut", donut );
+    }
+  }
+
+  public boolean getDonut() {
+    return donut;
   }
 
   public void setItems( PieItem... items ) {
