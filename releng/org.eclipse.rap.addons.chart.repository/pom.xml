@@ -18,10 +18,10 @@
     <groupId>org.eclipse.rap.incubator</groupId>
     <artifactId>org.eclipse.rap.incubator-parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <relativePath>../../../../org.eclipse.rap.incubator.releng/releng/org.eclipse.rap.incubator.releng/parent</relativePath>
+    <relativePath>../../../org.eclipse.rap.incubator.releng/releng/org.eclipse.rap.incubator.releng/parent</relativePath>
   </parent>
 
-  <artifactId>org.eclipse.rap.addons.chart-repository</artifactId>
+  <artifactId>org.eclipse.rap.addons.chart.repository</artifactId>
   <packaging>eclipse-repository</packaging>
 
   <build>
