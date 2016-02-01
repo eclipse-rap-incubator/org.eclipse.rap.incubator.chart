@@ -38,8 +38,9 @@ import org.eclipse.swt.widgets.Listener;
 @SuppressWarnings( "deprecation" ) // RAP 3.0 compatibility
 public abstract class Chart extends Canvas {
 
+  private static final String PROP_D3_JS_URL = "org.eclipse.rap.addons.chart.d3JsUrl";
+  private static final String DEF_D3_JS_URL = "https://d3js.org/d3.v3.min.js";
   private static final String REMOTE_TYPE = "rwt.chart.Chart";
-  private static final String D3_JS_URL = "https://d3js.org/d3.v3.min.js";
 
   private Resources resources;
   private CssLoader cssLoader;
@@ -67,7 +68,7 @@ public abstract class Chart extends Canvas {
     } );
     resources = getUniqueInstance( Resources.class, RWT.getApplicationContext() );
     cssLoader = getUniqueInstance( CssLoader.class, RWT.getUISession() );
-    requireJs( D3_JS_URL );
+    requireJs( System.getProperty( PROP_D3_JS_URL, DEF_D3_JS_URL ) );
     requireJs( registerResource( "chart/chart.js" ) );
   }
 

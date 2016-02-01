@@ -15,15 +15,18 @@ import org.eclipse.swt.widgets.Composite;
 
 public abstract class NvChart extends Chart {
 
-  private static final String NVD3_CSS_URL
-    = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css";
-  private static final String NVD3_JS_URL
+  private static final String PROP_NVD3_JS_URL = "org.eclipse.rap.addons.chart.nvd3JsUrl";
+  private static final String PROP_NVD3_CSS_URL = "org.eclipse.rap.addons.chart.nvd3CssUrl";
+  private static final String DEF_NVD3_JS_URL
     = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js";
+  private static final String DEF_NVD3_CSS_URL
+    = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css";
+
 
   protected NvChart( Composite parent, int style, String renderer ) {
     super( parent, style, renderer );
-    requireJs( NVD3_JS_URL );
-    requireCss( NVD3_CSS_URL );
+    requireJs( System.getProperty( PROP_NVD3_JS_URL, DEF_NVD3_JS_URL ) );
+    requireCss( System.getProperty( PROP_NVD3_CSS_URL, DEF_NVD3_CSS_URL ) );
     requireCss( registerResource( "resources/nv-chart.css" ) );
   }
 

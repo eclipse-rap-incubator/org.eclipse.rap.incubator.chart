@@ -35,6 +35,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -69,13 +70,24 @@ public class Chart_Test {
   @Test
   public void testCreate_requiresD3JS() {
     JavaScriptLoader loader = mock( JavaScriptLoader.class );
-    Client client = mock( Client.class );
-    when( client.getService( JavaScriptLoader.class ) ).thenReturn( loader );
-    context.replaceClient( client );
+    fakeLoader( loader );
 
     new Chart( shell, SWT.BORDER, "foo" ) {};
 
     verify( loader ).require( "https://d3js.org/d3.v3.min.js" );
+  }
+
+  @Test
+  public void testCreate_requiresD3JS_fromSystemProperty() {
+    JavaScriptLoader loader = mock( JavaScriptLoader.class );
+    fakeLoader( loader );
+
+    System.setProperty( "org.eclipse.rap.addons.chart.d3JsUrl", "custom://url" );
+    new Chart( shell, SWT.BORDER, "foo" ) {};
+    System.clearProperty( "org.eclipse.rap.addons.chart.d3JsUrl" );
+
+    verify( loader, never() ).require( "https://d3js.org/d3.v3.min.js" );
+    verify( loader ).require( "custom://url" );
   }
 
   @Test
@@ -185,6 +197,12 @@ public class Chart_Test {
     chart.removeListener( SWT.Selection, listener );
 
     verify( remoteObject ).listen( "Selection", false );
+  }
+
+  private void fakeLoader( JavaScriptLoader loader ) {
+    Client client = mock( Client.class );
+    when( client.getService( JavaScriptLoader.class ) ).thenReturn( loader );
+    context.replaceClient( client );
   }
 
   private Connection fakeConnection( RemoteObject remoteObject ) {
