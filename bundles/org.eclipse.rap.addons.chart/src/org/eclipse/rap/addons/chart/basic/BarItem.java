@@ -16,17 +16,27 @@ import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.graphics.RGB;
 
 
+/**
+ * Represents a bar in a bar chart.
+ *
+ * @see BarChart
+ */
 public class BarItem {
 
-  protected double value;
-  protected String text;
-  protected RGB color;
+  protected final double value;
+  protected final String text;
+  protected final RGB color;
 
+  /**
+   * Create a new bar item with the given value and text.
+   */
   public BarItem( double value, String text ) {
-    this.value = value;
-    this.text = text;
+    this( value, text, null );
   }
 
+  /**
+   * Create a new bar item with the given value, text, and color.
+   */
   public BarItem( double value, String text, RGB color ) {
     this.value = value;
     this.text = text;

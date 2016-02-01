@@ -15,6 +15,16 @@ import org.eclipse.rap.json.JsonArray;
 import org.eclipse.swt.widgets.Composite;
 
 
+/**
+ * A basic line chart widget that supports multiple lines.
+ *
+ * <dl>
+ * <dt><b>Styles:</b></dt>
+ * <dd>none</dd>
+ * <dt><b>Events:</b></dt>
+ * <dd>Selection</dd>
+ * </dl>
+ */
 public class LineChart extends NvChart {
 
   private String xAxisLabel;
@@ -22,11 +32,19 @@ public class LineChart extends NvChart {
   private String xAxisFormat;
   private String yAxisFormat;
 
+  /**
+   * Creates a new empty LineChart.
+   */
   public LineChart( Composite parent, int style ) {
-    super( parent, style, "nv-line" );
+   super( parent, style, "nv-line" );
     requireJs( registerResource( "chart/nv/nv-line.js" ) );
   }
 
+  /**
+   * Sets the label to display on the x-axis.
+   *
+   * @param label the label for the x-axis
+   */
   public void setXAxisLabel( String label ) {
     checkWidget();
     if( this.xAxisLabel != label ) {
@@ -35,11 +53,21 @@ public class LineChart extends NvChart {
     }
   }
 
+  /**
+   * Returns the label for the x-axis.
+   *
+   * @return the label for the x-axis
+   */
   public String getXAxisLabel() {
     checkWidget();
     return xAxisLabel != null ? xAxisLabel : "";
   }
 
+  /**
+   * Sets the label to display on the y-axis.
+   *
+   * @param label the label for the y-axis
+   */
   public void setYAxisLabel( String label ) {
     checkWidget();
     if( this.yAxisLabel != label ) {
@@ -48,6 +76,23 @@ public class LineChart extends NvChart {
     }
   }
 
+  /**
+   * Returns the label for the y-axis.
+   *
+   * @return the label for the y-axis
+   */
+  public String getYAxisLabel() {
+    checkWidget();
+    return xAxisLabel != null ? xAxisLabel : "";
+  }
+
+  /**
+   * Sets the format for the labels on the x-axis. The format string must be recognizable by the
+   * <a href="https://github.com/mbostock/d3/wiki/Formatting#d3_format">d3.format()</a> function.
+   *
+   * @see "https://github.com/mbostock/d3/wiki/Formatting#d3_format"
+   * @param format a d3 format string for the labels of the x-axis
+   */
   public void setXAxisFormat( String format ) {
     checkWidget();
     if( this.xAxisFormat != format ) {
@@ -56,11 +101,23 @@ public class LineChart extends NvChart {
     }
   }
 
+  /**
+   * Returns the format used for labels on the x-axis.
+   *
+   * @return the format for the labels on the x-axis
+   */
   public String getXAxisFormat() {
     checkWidget();
     return xAxisFormat;
   }
 
+  /**
+   * Sets the format for the labels on the y-axis. The format string must be recognizable by the
+   * <a href="https://github.com/mbostock/d3/wiki/Formatting#d3_format">d3.format()</a> function.
+   *
+   * @see "https://github.com/mbostock/d3/wiki/Formatting#d3_format"
+   * @param format a d3 format string for the labels of the y-axis
+   */
   public void setYAxisFormat( String format ) {
     checkWidget();
     if( this.yAxisFormat != format ) {
@@ -69,11 +126,22 @@ public class LineChart extends NvChart {
     }
   }
 
+  /**
+   * Returns the format used for labels on the y-axis.
+   *
+   * @return the format for the labels on the y-axis
+   */
   public String getYAxisFormat() {
     checkWidget();
     return yAxisFormat;
   }
 
+  /**
+   * Sets the data items to display. Every item represents a separate line. Later changes to this
+   * list won't be reflected. To change the chart data, call this method with a new list of items.
+   *
+   * @param items the data items to display
+   */
   public void setItems( LineItem... items ) {
     JsonArray values = new JsonArray();
     for( LineItem item : items ) {

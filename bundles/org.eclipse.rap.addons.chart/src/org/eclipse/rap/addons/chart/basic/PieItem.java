@@ -16,17 +16,27 @@ import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.graphics.RGB;
 
 
+/**
+ * Represents a segment of a pie/donut chart.
+ *
+ * @see PieChart
+ */
 public class PieItem {
 
-  protected double value;
-  protected String text;
-  protected RGB color;
+  protected final double value;
+  protected final String text;
+  protected final RGB color;
 
+  /**
+   * Create a new pie item with the given value and text.
+   */
   public PieItem( double value, String text ) {
-    this.value = value;
-    this.text = text;
+    this( value, text, null );
   }
 
+  /**
+   * Create a new pie item with the given value, text, and color.
+   */
   public PieItem( double value, String text, RGB color ) {
     this.value = value;
     this.text = text;

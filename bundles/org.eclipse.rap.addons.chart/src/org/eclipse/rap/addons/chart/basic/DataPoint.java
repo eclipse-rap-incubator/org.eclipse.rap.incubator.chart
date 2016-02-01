@@ -12,12 +12,29 @@ package org.eclipse.rap.addons.chart.basic;
 
 import org.eclipse.rap.json.JsonObject;
 
+
+/**
+ * Represents a data point in a Cartesian plane.
+ */
 public class DataPoint {
 
-  public double x;
-  public double y;
+  /**
+   * the x coordinate of the point
+   */
+  public final double x;
 
-  public DataPoint(double x, double y) {
+  /**
+   * the y coordinate of the point
+   */
+  public final double y;
+
+  /**
+   * Creates a new data point with the given coordinates.
+   *
+   * @param x the x coordinate of this point
+   * @param y the y coordinate of this point
+   */
+  public DataPoint( double x, double y ) {
     this.x = x;
     this.y = y;
   }

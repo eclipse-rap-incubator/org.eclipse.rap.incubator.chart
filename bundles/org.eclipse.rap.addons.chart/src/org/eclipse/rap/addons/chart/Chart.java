@@ -35,6 +35,18 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
+/**
+ * An extensible Chart widget based on <a href="http://d3js.org/">d3.js</a>.
+ * <p>
+ * Be default, the d3 library (<code>d3.v3.min.js</code>) is loaded from a CDN. To change the URL,
+ * you can set the system property <em>org.eclipse.rap.addons.chart.d3JsUrl</em> to a custom URL.
+ * </p>
+ * <p>
+ * Subclasses must provide a client implementation and refer to it using a renderer id in the
+ * constructor. Have a look at the existing implementations of this class.
+ * </p>
+ * @see "http://d3js.org/"
+ */
 @SuppressWarnings( "deprecation" ) // RAP 3.0 compatibility
 public abstract class Chart extends Canvas {
 
@@ -47,7 +59,10 @@ public abstract class Chart extends Canvas {
 
   protected final RemoteObject remoteObject;
 
-  public Chart( Composite parent, int style, String renderer ) {
+  /**
+   * Create a chart instance that is implemented by the given <code>renderer</code>.
+   */
+  protected Chart( Composite parent, int style, String renderer ) {
     super( parent, style );
     remoteObject = RWT.getUISession().getConnection().createRemoteObject( REMOTE_TYPE );
     remoteObject.set( "parent", getId( this ) );
@@ -72,39 +87,121 @@ public abstract class Chart extends Canvas {
     requireJs( registerResource( "chart/chart.js" ) );
   }
 
-  protected void setItems( JsonArray data ) {
+  /**
+   * Set the data items. This will usually be a {@link JsonArray}.
+   *
+   * @param data the data
+   */
+  protected void setItems( JsonValue data ) {
     checkWidget();
     remoteObject.set( "items", data );
   }
 
+  /**
+   * Sets an option of the client-side chart. If a function of the given name exists on the
+   * client-side chart object, it will be called with the given value as parameter. By using a
+   * dot-separated name, a function on a sub-object can be called.
+   * <p>
+   * Subclasses should call this method when the value of this option actually changes.
+   * </p>
+   *
+   * @param name the name of the option, may be separated by dots to refer to a sub-object
+   * @param value the value of the option
+   */
   protected void setOption( String name, int value ) {
     setOption( name, valueOf( value ) );
   }
 
+  /**
+   * Sets an option of the client-side chart. If a function of the given name exists on the
+   * client-side chart object, it will be called with the given value as parameter. By using a
+   * dot-separated name, a function on a sub-object can be called.
+   * <p>
+   * Subclasses should call this method when the value of this option actually changes.
+   * </p>
+   *
+   * @param name the name of the option, may be separated by dots to refer to a sub-object
+   * @param value the value of the option
+   */
   protected void setOption( String name, double value ) {
     setOption( name, valueOf( value ) );
   }
 
+  /**
+   * Sets an option of the client-side chart. If a function of the given name exists on the
+   * client-side chart object, it will be called with the given value as parameter. By using a
+   * dot-separated name, a function on a sub-object can be called.
+   * <p>
+   * Subclasses should call this method when the value of this option actually changes.
+   * </p>
+   *
+   * @param name the name of the option, may be separated by dots to refer to a sub-object
+   * @param value the value of the option
+   */
   protected void setOption( String name, boolean value ) {
     setOption( name, valueOf( value ) );
   }
 
+  /**
+   * Sets an option of the client-side chart. If a function of the given name exists on the
+   * client-side chart object, it will be called with the given value as parameter. By using a
+   * dot-separated name, a function on a sub-object can be called.
+   * <p>
+   * Subclasses should call this method when the value of this option actually changes.
+   * </p>
+   *
+   * @param name the name of the option, may be separated by dots to refer to a sub-object
+   * @param value the value of the option
+   */
   protected void setOption( String name, String value ) {
     setOption( name, valueOf( value ) );
   }
 
+  /**
+   * Sets an option of the client-side chart. If a function of the given name exists on the
+   * client-side chart object, it will be called with the given value as parameter. By using a
+   * dot-separated name, a function on a sub-object can be called.
+   * <p>
+   * Subclasses should call this method when the value of this option actually changes.
+   * </p>
+   *
+   * @param name the name of the option, may be separated by dots to refer to a sub-object
+   * @param value the value of the option
+   */
   protected void setOption( String name, JsonValue value ) {
     remoteObject.call( "setOptions", new JsonObject().add( name, value ) );
   }
 
+  /**
+   * Instruct the client to immediately load and evaluate a JavaScript file from the given URL. If
+   * the file has already been loaded by the client, it won't be loaded again. You can use
+   * {@link #registerResource(String)} to register the resource with the resource manager.
+   *
+   * @param url the URL from which to load the JavaScript file
+   */
   protected void requireJs( String url ) {
     getClient().getService( JavaScriptLoader.class ).require( url );
   }
 
+  /**
+   * Instruct the client to immediately load and include CSS file from the given URL. If the file
+   * has already been loaded by the client, it won't be loaded again. You can use
+   * {@link #registerResource(String)} to register the resource with the resource manager.
+   *
+   * @param url the URL from which to load the CSS file
+   */
   protected void requireCss( String url ) {
     cssLoader.requireCss( url );
   }
 
+  /**
+   * Loads a resource with the given name from the class loader of this class and registers it with
+   * the resource manager if it was not registered already. If the resource has already been
+   * registered, it won't be loaded again.
+   *
+   * @param url the resource name in the format supported by the class loader
+   * @see ClassLoader#getResource(String)
+   */
   protected String registerResource( String resourceName ) {
     return resources.register( resourceName, resourceName, getResourceLoader() );
   }
