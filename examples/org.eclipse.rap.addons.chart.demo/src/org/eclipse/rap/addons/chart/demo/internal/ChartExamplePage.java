@@ -10,7 +10,7 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.demo.internal;
 
-import org.eclipse.rap.addons.chart.nv.demo.ChartSnippetPage;
+import org.eclipse.rap.addons.chart.demo.ChartSnippetPage;
 import org.eclipse.rap.examples.IExamplePage;
 import org.eclipse.swt.widgets.Composite;
 

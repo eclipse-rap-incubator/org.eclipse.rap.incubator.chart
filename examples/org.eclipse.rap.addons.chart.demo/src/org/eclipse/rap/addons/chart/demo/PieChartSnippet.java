@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 EclipseSource and others.
+ * Copyright (c) 2013, 2016 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,12 +8,14 @@
  * Contributors:
  *    Ralf Sternberg - initial API and implementation
  ******************************************************************************/
-package org.eclipse.rap.addons.chart.nv.demo;
+package org.eclipse.rap.addons.chart.demo;
 
-import static org.eclipse.rap.addons.chart.nv.demo.Colors.CAT10_COLORS;
 
-import org.eclipse.rap.addons.chart.basic.BarChart;
-import org.eclipse.rap.addons.chart.basic.BarItem;
+import org.eclipse.rap.addons.chart.basic.PieItem;
+
+import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
+
+import org.eclipse.rap.addons.chart.basic.PieChart;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -24,26 +26,27 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
-public class BarChartSnippet extends AbstractEntryPoint {
+public class PieChartSnippet extends AbstractEntryPoint {
 
-  private BarChart barChart;
+  private PieChart pieChart;
 
   @Override
   public void createContents( Composite parent ) {
     parent.setLayout( new GridLayout() );
-    createBarChart( parent );
+    createPieChart( parent );
     createUpdateButton( parent );
     update();
   }
 
-  private void createBarChart( Composite parent ) {
-    barChart = new BarChart( parent, SWT.NONE );
-    barChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
-    barChart.setShowValues( true );
-    barChart.addListener( SWT.Selection, new Listener() {
+  private void createPieChart( Composite parent ) {
+    pieChart = new PieChart( parent, SWT.NONE );
+    pieChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
+    pieChart.setShowLabels( true );
+    pieChart.setDonut( true );
+    pieChart.addListener( SWT.Selection, new Listener() {
       @Override
       public void handleEvent( Event event ) {
-        System.out.println( "Selected bar item #" + event.index );
+        System.out.println( "Selected pie item #" + event.index );
       }
     } );
   }
@@ -60,16 +63,16 @@ public class BarChartSnippet extends AbstractEntryPoint {
   }
 
   private void update() {
-    barChart.setItems( createItems() );
+    pieChart.setItems( createItems() );
   }
 
-  private static BarItem[] createItems() {
-    return new BarItem[] {
-      new BarItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
-      new BarItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
-      new BarItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
-      new BarItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
-      new BarItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
+  private static PieItem[] createItems() {
+    return new PieItem[] {
+      new PieItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
+      new PieItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
+      new PieItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
+      new PieItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
+      new PieItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
     };
   }
 

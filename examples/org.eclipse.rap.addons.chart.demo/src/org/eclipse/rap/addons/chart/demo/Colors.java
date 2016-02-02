@@ -8,7 +8,7 @@
  * Contributors:
  *    Ralf Sternberg - initial API and implementation
  ******************************************************************************/
-package org.eclipse.rap.addons.chart.nv.demo;
+package org.eclipse.rap.addons.chart.demo;
 
 import org.eclipse.swt.graphics.RGB;
 

@@ -8,9 +8,9 @@
  * Contributors:
  *    Ralf Sternberg - initial API and implementation
  ******************************************************************************/
-package org.eclipse.rap.addons.chart.nv.demo;
+package org.eclipse.rap.addons.chart.demo;
 
-import static org.eclipse.rap.addons.chart.nv.demo.Colors.CAT10_COLORS;
+import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
 
 import org.eclipse.rap.addons.chart.basic.DataPoint;
 import org.eclipse.rap.addons.chart.basic.LineChart;
