@@ -41,7 +41,6 @@ public class PieChartSnippet extends AbstractEntryPoint {
   private void createPieChart( Composite parent ) {
     pieChart = new PieChart( parent, SWT.NONE );
     pieChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
-    pieChart.setShowLabels( true );
     pieChart.setDonut( true );
     pieChart.addListener( SWT.Selection, new Listener() {
       @Override

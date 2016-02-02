@@ -39,7 +39,6 @@ public class BarChartSnippet extends AbstractEntryPoint {
   private void createBarChart( Composite parent ) {
     barChart = new BarChart( parent, SWT.NONE );
     barChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
-    barChart.setShowValues( true );
     barChart.addListener( SWT.Selection, new Listener() {
       @Override
       public void handleEvent( Event event ) {
