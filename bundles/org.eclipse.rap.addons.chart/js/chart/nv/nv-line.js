@@ -11,8 +11,8 @@
 
 rwt.chart.register( "nv-line", function( widget ) {
   var chart = nv.models.lineChart();
-  chart.xAxis.tickFormat( d3.format("d" ) );
-  chart.yAxis.tickFormat( d3.format("d" ) );
+  chart.xAxis.tickFormat( d3.format( "d" ) );
+  chart.yAxis.tickFormat( d3.format( "d" ) );
   chart.lines.dispatch.on( "elementClick", function( item ) {
     widget.notifySelection( item.seriesIndex, item.pointIndex );
   });
