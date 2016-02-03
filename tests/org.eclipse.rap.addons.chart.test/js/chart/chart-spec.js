@@ -39,8 +39,8 @@ describe( "Chart", function() {
       getClientArea: function() { return [ 20, 30, 200, 300 ]; }
     };
     renderer = jasmine.createSpy();
-    renderer.width = jasmine.createSpy().and.returnValue(renderer);
-    renderer.height = jasmine.createSpy().and.returnValue(renderer);
+    renderer.width = jasmine.createSpy().and.returnValue( renderer );
+    renderer.height = jasmine.createSpy().and.returnValue( renderer );
     generator = function() { return renderer; };
     captor = [];
   } );
@@ -51,8 +51,8 @@ describe( "Chart", function() {
     chart = new rwt.chart.Chart( parent, generator );
 
     expect( parent.append ).toHaveBeenCalled();
-    expect( parent.append.calls.mostRecent().args[0] ).toEqual(jasmine.any(Element));
-    expect( parent.append.calls.mostRecent().args[0].tagName ).toBe("DIV");
+    expect( parent.append.calls.mostRecent().args[0] ).toEqual( jasmine.any( Element ) );
+    expect( parent.append.calls.mostRecent().args[0].tagName ).toBe( "DIV" );
   } );
 
   describe( "svg element", function() {

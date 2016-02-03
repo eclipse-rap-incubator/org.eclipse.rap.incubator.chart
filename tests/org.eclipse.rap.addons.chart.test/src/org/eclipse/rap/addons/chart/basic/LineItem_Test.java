@@ -22,7 +22,7 @@ public class LineItem_Test {
 
   @Test
   public void testToJson() {
-    DataPoint[] points = new DataPoint[] { new DataPoint(1, 2), new DataPoint(3, 4) };
+    DataPoint[] points = new DataPoint[] { new DataPoint( 1, 2 ), new DataPoint( 3, 4 ) };
     LineItem item = new LineItem( points, "foo", new RGB( 0, 8, 128 ) );
 
     JsonObject json = item.toJson();
@@ -35,7 +35,7 @@ public class LineItem_Test {
 
   @Test
   public void testToJson_skipsMissingColor() {
-    DataPoint[] points = new DataPoint[] { new DataPoint(1, 2), new DataPoint(3, 4) };
+    DataPoint[] points = new DataPoint[] { new DataPoint( 1, 2 ), new DataPoint( 3, 4 ) };
     LineItem item = new LineItem( points, "foo" );
 
     JsonObject json = item.toJson();
@@ -47,7 +47,7 @@ public class LineItem_Test {
 
   @Test
   public void testToJson_skipsMissingText() {
-    DataPoint[] points = new DataPoint[] { new DataPoint(1, 2), new DataPoint(3, 4) };
+    DataPoint[] points = new DataPoint[] { new DataPoint( 1, 2 ), new DataPoint( 3, 4 ) };
     LineItem item = new LineItem( points, null, new RGB( 0, 8, 128 ) );
 
     JsonObject json = item.toJson();

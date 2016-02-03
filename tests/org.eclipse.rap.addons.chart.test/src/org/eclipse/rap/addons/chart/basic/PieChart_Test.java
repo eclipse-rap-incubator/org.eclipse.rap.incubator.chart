@@ -115,7 +115,7 @@ public class PieChart_Test {
 
     String expected = "[{ \"value\": 23, \"label\": \"foo\" },"
                      + "{ \"value\": 42, \"label\": \"bar\" }]";
-    verify( remoteObject ).set( "items", JsonValue.readFrom(expected) );
+    verify( remoteObject ).set( "items", JsonValue.readFrom( expected ) );
   }
 
   private Connection fakeConnection( RemoteObject remoteObject ) {
