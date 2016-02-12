@@ -13,7 +13,7 @@ package org.eclipse.rap.addons.chart.demo;
 import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
 
 import org.eclipse.rap.addons.chart.basic.BarChart;
-import org.eclipse.rap.addons.chart.basic.BarItem;
+import org.eclipse.rap.addons.chart.basic.DataItem;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -62,13 +62,13 @@ public class BarChartSnippet extends AbstractEntryPoint {
     barChart.setItems( createItems() );
   }
 
-  private static BarItem[] createItems() {
-    return new BarItem[] {
-      new BarItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
-      new BarItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
-      new BarItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
-      new BarItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
-      new BarItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
+  private static DataItem[] createItems() {
+    return new DataItem[] {
+      new DataItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
+      new DataItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
+      new DataItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
+      new DataItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
+      new DataItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
     };
   }
 

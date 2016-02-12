@@ -10,8 +10,11 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.basic;
 
+import static org.eclipse.rap.addons.chart.internal.ColorUtil.toHtmlString;
+
 import org.eclipse.rap.addons.chart.NvChart;
 import org.eclipse.rap.json.JsonArray;
+import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -142,12 +145,33 @@ public class LineChart extends NvChart {
    *
    * @param items the data items to display
    */
-  public void setItems( LineItem... items ) {
+  public void setItems( DataGroup... items ) {
     JsonArray values = new JsonArray();
-    for( LineItem item : items ) {
-      values.add( item.toJson() );
+    for( DataGroup item : items ) {
+      values.add( toJson( item ) );
     }
     setItems( values );
+  }
+
+  private static JsonObject toJson( DataGroup group ) {
+    JsonArray values = new JsonArray();
+    for( int i = 0; i < group.items.length; i++ ) {
+      DataItem item = group.items[ i ];
+      if( item instanceof DataItem2D ) {
+        DataItem2D item2d = ( DataItem2D )item;
+        values.add( new JsonObject().add( "x", item2d.getX() ).add( "y", item2d.getY() ) );
+      } else {
+        values.add( new JsonObject().add( "x", i ).add( "y", item.getValue() ) );
+      }
+    }
+    JsonObject json = new JsonObject().add( "values", values );
+    if( group.text != null ) {
+      json.add( "key", group.text );
+    }
+    if( group.color != null ) {
+      json.add( "color", toHtmlString( group.color ) );
+    }
+    return json;
   }
 
 }

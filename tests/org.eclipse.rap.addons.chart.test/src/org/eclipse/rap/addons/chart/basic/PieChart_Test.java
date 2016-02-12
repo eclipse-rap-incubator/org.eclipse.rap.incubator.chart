@@ -111,7 +111,7 @@ public class PieChart_Test {
   public void testSetItems() {
     reset( remoteObject );
 
-    chart.setItems( new PieItem( 23, "foo" ), new PieItem( 42, "bar" ) );
+    chart.setItems( new DataItem( 23, "foo" ), new DataItem( 42, "bar" ) );
 
     String expected = "[{ \"value\": 23, \"label\": \"foo\" },"
                      + "{ \"value\": 42, \"label\": \"bar\" }]";
