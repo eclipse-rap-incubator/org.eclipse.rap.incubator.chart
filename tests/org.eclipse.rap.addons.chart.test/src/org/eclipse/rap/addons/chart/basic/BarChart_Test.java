@@ -90,7 +90,7 @@ public class BarChart_Test {
   public void testSetItems() {
     reset( remoteObject );
 
-    chart.setItems( new BarItem( 23, "foo" ), new BarItem( 42, "bar" ) );
+    chart.setItems( new DataItem( 23, "foo" ), new DataItem( 42, "bar" ) );
 
     String expected = "[ { \"values\": [ { \"value\": 23, \"label\": \"foo\" },"
                                       + "{ \"value\": 42, \"label\": \"bar\" } ] } ]";

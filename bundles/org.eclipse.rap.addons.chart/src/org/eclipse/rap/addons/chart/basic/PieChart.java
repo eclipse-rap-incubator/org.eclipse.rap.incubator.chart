@@ -10,8 +10,11 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.basic;
 
+import static org.eclipse.rap.addons.chart.internal.ColorUtil.toHtmlString;
+
 import org.eclipse.rap.addons.chart.NvChart;
 import org.eclipse.rap.json.JsonArray;
+import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -89,12 +92,23 @@ public class PieChart extends NvChart {
    *
    * @param items the data items to display
    */
-  public void setItems( PieItem... items ) {
+  public void setItems( DataItem... items ) {
     JsonArray values = new JsonArray();
-    for( PieItem item : items ) {
-      values.add( item.toJson() );
+    for( DataItem item : items ) {
+      values.add( toJson( item ) );
     }
     setItems( values );
+  }
+
+  private static JsonObject toJson( DataItem item ) {
+    JsonObject json = new JsonObject().add( "value", item.value );
+    if( item.text != null ) {
+      json.add( "label", item.text );
+    }
+    if( item.color != null ) {
+      json.add( "color", toHtmlString( item.color ) );
+    }
+    return json;
   }
 
 }

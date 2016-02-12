@@ -11,7 +11,7 @@
 package org.eclipse.rap.addons.chart.demo;
 
 
-import org.eclipse.rap.addons.chart.basic.PieItem;
+import org.eclipse.rap.addons.chart.basic.DataItem;
 
 import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
 
@@ -65,13 +65,13 @@ public class PieChartSnippet extends AbstractEntryPoint {
     pieChart.setItems( createItems() );
   }
 
-  private static PieItem[] createItems() {
-    return new PieItem[] {
-      new PieItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
-      new PieItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
-      new PieItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
-      new PieItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
-      new PieItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
+  private static DataItem[] createItems() {
+    return new DataItem[] {
+      new DataItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
+      new DataItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
+      new DataItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
+      new DataItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
+      new DataItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
     };
   }
 

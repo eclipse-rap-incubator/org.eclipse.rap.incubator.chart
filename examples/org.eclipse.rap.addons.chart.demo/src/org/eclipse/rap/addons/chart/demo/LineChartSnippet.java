@@ -12,9 +12,9 @@ package org.eclipse.rap.addons.chart.demo;
 
 import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
 
-import org.eclipse.rap.addons.chart.basic.DataPoint;
 import org.eclipse.rap.addons.chart.basic.LineChart;
-import org.eclipse.rap.addons.chart.basic.LineItem;
+import org.eclipse.rap.addons.chart.basic.DataGroup;
+import org.eclipse.rap.addons.chart.basic.DataItem;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -66,17 +66,17 @@ public class LineChartSnippet extends AbstractEntryPoint {
     lineChart.setItems( createItems() );
   }
 
-  private static LineItem[] createItems() {
-    return new LineItem[] {
-      new LineItem( createRandomPoints(), "Series 1", CAT10_COLORS[ 0 ] ),
-      new LineItem( createRandomPoints(), "Series 2", CAT10_COLORS[ 1 ] )
+  private static DataGroup[] createItems() {
+    return new DataGroup[] {
+      new DataGroup( createRandomPoints(), "Series 1", CAT10_COLORS[ 0 ] ),
+      new DataGroup( createRandomPoints(), "Series 2", CAT10_COLORS[ 1 ] )
     };
   }
 
-  private static DataPoint[] createRandomPoints() {
-    DataPoint[] values = new DataPoint[100];
+  private static DataItem[] createRandomPoints() {
+    DataItem[] values = new DataItem[100];
     for( int i = 0; i < values.length; i++ ) {
-      values[i] = new DataPoint( i, Math.random() * 100 );
+      values[i] = new DataItem( Math.random() * 100 );
     }
     return values;
   }

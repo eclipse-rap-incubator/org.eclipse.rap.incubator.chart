@@ -150,10 +150,10 @@ public class LineChart_Test {
   public void testSetItems() {
     reset( remoteObject );
 
-    chart.setItems( new LineItem( new DataPoint[] { new DataPoint( 1, 2 ),
-                                                         new DataPoint( 3, 4 ) }, "foo" ),
-                    new LineItem( new DataPoint[] { new DataPoint( 2, 4 ),
-                                                         new DataPoint( 6, 8 ) }, "bar" ) );
+    chart.setItems( new DataGroup( new DataItem2D[] { new DataItem2D( 1, 2 ),
+                                                      new DataItem2D( 3, 4 ) }, "foo" ),
+                    new DataGroup( new DataItem2D[] { new DataItem2D( 2, 4 ),
+                                                      new DataItem2D( 6, 8 ) }, "bar" ) );
 
     String expected = "[{ \"values\": [{ \"x\": 1, \"y\": 2 },"
                                     + "{ \"x\": 3, \"y\": 4 }], \"key\": \"foo\" },"

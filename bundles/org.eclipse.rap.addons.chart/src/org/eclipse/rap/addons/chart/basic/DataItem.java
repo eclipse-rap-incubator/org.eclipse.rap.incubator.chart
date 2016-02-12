@@ -10,55 +10,75 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.basic;
 
-import static org.eclipse.rap.addons.chart.internal.ColorUtil.toHtmlString;
-
-import org.eclipse.rap.json.JsonObject;
 import org.eclipse.swt.graphics.RGB;
 
 
 /**
- * Represents a bar in a bar chart.
- *
- * @see BarChart
+ * Represents a data item in a chart.
  */
-public class BarItem {
+public class DataItem {
 
   protected final double value;
   protected final String text;
   protected final RGB color;
 
   /**
-   * Create a new bar item with the given value and text.
+   * Create a new data item with the given value.
    *
-   * @param value the value of the item, affects the size of the bar
+   * @param value the value of the item
+   */
+  public DataItem( double value ) {
+    this( value, null );
+  }
+
+  /**
+   * Create a new data item with the given value and text.
+   *
+   * @param value the value of the item
    * @param text the label text for the item, or <code>null</code> to omit the label
    */
-  public BarItem( double value, String text ) {
+  public DataItem( double value, String text ) {
     this( value, text, null );
   }
 
   /**
-   * Create a new bar item with the given value, text, and color.
+   * Create a new data item with the given value, text, and color.
    *
-   * @param value the value of the item, affects the size of the bar
+   * @param value the value of the item
    * @param text the label text for the item, or <code>null</code> to omit the label
    * @param color the color of this item, or <code>null</code> to use the default color
    */
-  public BarItem( double value, String text, RGB color ) {
+  public DataItem( double value, String text, RGB color ) {
     this.value = value;
     this.text = text;
     this.color = color;
   }
 
-  protected JsonObject toJson() {
-    JsonObject json = new JsonObject().add( "value", value );
-    if( text != null ) {
-      json.add( "label", text );
-    }
-    if( color != null ) {
-      json.add( "color", toHtmlString( color ) );
-    }
-    return json;
+  /**
+   * Returns the value of this data item.
+   *
+   * @return the item value
+   */
+  public double getValue() {
+    return value;
+  }
+
+  /**
+   * Returns the text for this data item.
+   *
+   * @return the item text, can be <code>null</code>
+   */
+  public String getText() {
+    return text;
+  }
+
+  /**
+   * Returns the color for this data item.
+   *
+   * @return the item color, can be <code>null</code>
+   */
+  public RGB getColor() {
+    return color;
   }
 
 }
