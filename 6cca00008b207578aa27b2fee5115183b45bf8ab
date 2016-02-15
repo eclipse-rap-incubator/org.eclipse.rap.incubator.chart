@@ -1,0 +1,7 @@
+Verified+1: Hudson CI
+Code-Review+2: Ivan Furnadjiev <ivan@eclipsesource.com>
+Submitted-by: Ralf Sternberg <rsternberg@eclipsesource.com>
+Submitted-at: Mon, 15 Feb 2016 05:10:19 -0500
+Reviewed-on: https://git.eclipse.org/r/65787
+Project: rap/incubator/org.eclipse.rap.incubator.chart
+Branch: refs/heads/master
