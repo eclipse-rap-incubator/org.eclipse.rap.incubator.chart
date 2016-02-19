@@ -18,6 +18,7 @@ rwt.chart.Chart = function( parent, renderer ) {
   this._renderer = renderer( this );
   this._element = this.createElement( parent );
   this._svg = d3.select( this._element ).append( "svg" ).attr( "class", "chart" );
+  this._needsRender = true;
   rap.on( "render", function() {
     if( this._needsRender ) {
       this._svg.datum( this._data );
