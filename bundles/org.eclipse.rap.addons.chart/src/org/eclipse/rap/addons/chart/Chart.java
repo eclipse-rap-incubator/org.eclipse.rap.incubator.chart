@@ -77,6 +77,10 @@ public abstract class Chart extends Canvas {
           if( detail != null ) {
             event.detail = detail.asInt();
           }
+          JsonValue text = properties.get( "text" );
+          if( text != null ) {
+            event.text = text.asString();
+          }
           notifyListeners( SWT.Selection, event );
         }
       }

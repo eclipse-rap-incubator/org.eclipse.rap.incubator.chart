@@ -69,11 +69,14 @@ rwt.chart.Chart.prototype = {
     return element;
   },
 
-  notifySelection: function( index, detail ) {
+  notifySelection: function( index, detail, text ) {
     var remoteObject = rap.getRemoteObject( this );
     var params = { "index": index };
     if( arguments.length > 1 ) {
       params.detail = detail;
+    }
+    if( arguments.length > 2 ) {
+      params.text = text;
     }
     remoteObject.notify( "Selection", params );
   },
