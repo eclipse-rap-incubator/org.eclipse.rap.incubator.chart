@@ -47,7 +47,7 @@ rwt.chart.Chart.prototype = {
       }
       obj = obj[part];
     });
-    if( typeof obj === "function" ) {
+    if( typeof obj === "function" && obj !== this._renderer ) {
       obj( value );
       this._scheduleUpdate();
     }

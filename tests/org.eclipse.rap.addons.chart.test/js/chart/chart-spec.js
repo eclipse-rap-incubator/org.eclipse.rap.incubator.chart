@@ -104,6 +104,12 @@ describe( "Chart", function() {
       expect( renderer.foo.bar ).toHaveBeenCalledWith( 23 );
     } );
 
+    it( "doesn't call renderer when method is missing", function() {
+      chart.setOption( "foo", 23 );
+
+      expect( renderer ).not.toHaveBeenCalledWith( 23 );
+    } );
+
   } );
 
 } );
