@@ -134,9 +134,9 @@ public class LineChart_Test {
   public void testSetXAxisFormat_isRendered() {
     reset( remoteObject );
 
-    chart.setXAxisFormat( "d" );
+    chart.setXAxisFormat( "x" );
 
-    verify( remoteObject ).call( "setOptions", new JsonObject().add( "xAxisFormat", "d" ) );
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "xAxisFormat", "x" ) );
   }
 
   @Test
@@ -144,6 +144,132 @@ public class LineChart_Test {
     chart.setXAxisFormat( chart.getXAxisFormat() );
 
     verify( remoteObject, times( 0 ) ).set( eq( "spacing" ), anyInt() );
+  }
+
+  @Test
+  public void testIsInteractive_defaultsToTrue() {
+    assertTrue( chart.isInteractive() );
+  }
+
+  @Test
+  public void testSetInteractive_changesValue() {
+    chart.setInteractive( false );
+
+    assertFalse( chart.isInteractive() );
+  }
+
+  @Test
+  public void testSetInteractive_isRendered() {
+    reset( remoteObject );
+
+    chart.setInteractive( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "interactive", false ) );
+  }
+
+  @Test
+  public void testGetInterpolate_hasDefault() {
+    assertEquals( "linear", chart.getInterpolate() );
+  }
+
+  @Test
+  public void testSetInterpolate_changesValue() {
+    chart.setInterpolate( "foo" );
+
+    assertEquals( "foo", chart.getInterpolate() );
+  }
+
+  @Test
+  public void testSetInterpolate_isRendered() {
+    reset( remoteObject );
+
+    chart.setInterpolate( "foo" );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "interpolate", "foo" ) );
+  }
+
+  @Test
+  public void testIsArea_defaultsToFalse() {
+    assertFalse( chart.isArea() );
+  }
+
+  @Test
+  public void testSetArea_changesValue() {
+    chart.setArea( true );
+
+    assertTrue( chart.isArea() );
+  }
+
+  @Test
+  public void testSetArea_isRendered() {
+    reset( remoteObject );
+
+    chart.setArea( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "isArea", true ) );
+  }
+
+  @Test
+  public void testIsUseInteractiveGuideline_defaultsToFalse() {
+    assertFalse( chart.isUseInteractiveGuideline() );
+  }
+
+  @Test
+  public void testSetUseInteractiveGuideline_changesValue() {
+    chart.setUseInteractiveGuideline( true );
+
+    assertTrue( chart.isUseInteractiveGuideline() );
+  }
+
+  @Test
+  public void testSetUseInteractiveGuideline_isRendered() {
+    reset( remoteObject );
+
+    chart.setUseInteractiveGuideline( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "useInteractiveGuideline", true ) );
+  }
+
+  @Test
+  public void testIsUseVoronoi_defaultsToTrue() {
+    assertTrue( chart.isUseVoronoi() );
+  }
+
+  @Test
+  public void testSetUseVoronoi_changesValue() {
+    chart.setUseVoronoi( false );
+
+    assertFalse( chart.isUseVoronoi() );
+  }
+
+  @Test
+  public void testSetUseVoronoi_isRendered() {
+    reset( remoteObject );
+
+    chart.setUseVoronoi( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "useVoronoi", false ) );
+  }
+
+  @Test
+  public void testIsPadData_defaultsToTrue() {
+    assertTrue( chart.isPadData() );
+  }
+
+  @Test
+  public void testSetPadData_changesValue() {
+    chart.setPadData( false );
+
+    assertFalse( chart.isPadData() );
+  }
+
+  @Test
+  public void testSetPadData_isRendered() {
+    reset( remoteObject );
+
+    chart.setPadData( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "padData", false ) );
   }
 
   @Test

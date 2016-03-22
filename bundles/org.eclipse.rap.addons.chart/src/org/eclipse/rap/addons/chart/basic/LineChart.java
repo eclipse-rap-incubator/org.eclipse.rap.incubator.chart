@@ -30,10 +30,17 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class LineChart extends NvChart {
 
-  private String xAxisLabel;
-  private String yAxisLabel;
-  private String xAxisFormat;
-  private String yAxisFormat;
+  private String xAxisLabel = "";
+  private String yAxisLabel = "";
+  private String xAxisFormat = "d";
+  private String yAxisFormat = "d";
+  
+  private boolean interactive = true;
+  private String interpolate = "linear";
+  private boolean area = false;
+  private boolean useInteractiveGuideline = false;
+  private boolean useVoronoi = true;
+  private boolean padData = true;
 
   /**
    * Creates a new empty LineChart.
@@ -44,13 +51,13 @@ public class LineChart extends NvChart {
   }
 
   /**
-   * Sets the label to display on the x-axis.
+   * Sets the label to display on the x-axis. Default is empty.
    *
    * @param label the label for the x-axis
    */
   public void setXAxisLabel( String label ) {
     checkWidget();
-    if( this.xAxisLabel != label ) {
+    if( label != null && !this.xAxisLabel.equals( label ) ) {
       xAxisLabel = label;
       setOption( "xAxis.axisLabel", label );
     }
@@ -63,17 +70,17 @@ public class LineChart extends NvChart {
    */
   public String getXAxisLabel() {
     checkWidget();
-    return xAxisLabel != null ? xAxisLabel : "";
+    return this.xAxisLabel;
   }
 
   /**
-   * Sets the label to display on the y-axis.
+   * Sets the label to display on the y-axis. Default is empty.
    *
    * @param label the label for the y-axis
    */
   public void setYAxisLabel( String label ) {
     checkWidget();
-    if( this.yAxisLabel != label ) {
+    if( label!=null && !this.yAxisLabel.equals( label ) ) {
       yAxisLabel = label;
       setOption( "yAxis.axisLabel", label );
     }
@@ -86,20 +93,21 @@ public class LineChart extends NvChart {
    */
   public String getYAxisLabel() {
     checkWidget();
-    return xAxisLabel != null ? xAxisLabel : "";
+    return this.yAxisLabel;
   }
 
   /**
    * Sets the format for the labels on the x-axis. The format string must be recognizable by the
    * <a href="https://github.com/mbostock/d3/wiki/Formatting#d3_format">d3.format()</a> function.
+   * Default is <code>d</code>.
    *
    * @see "https://github.com/mbostock/d3/wiki/Formatting#d3_format"
    * @param format a d3 format string for the labels of the x-axis
    */
   public void setXAxisFormat( String format ) {
     checkWidget();
-    if( this.xAxisFormat != format ) {
-      xAxisFormat = format;
+    if( format!=null && !this.xAxisFormat.equals( format ) ) {
+      this.xAxisFormat = format;
       setOption( "xAxisFormat", format );
     }
   }
@@ -117,14 +125,15 @@ public class LineChart extends NvChart {
   /**
    * Sets the format for the labels on the y-axis. The format string must be recognizable by the
    * <a href="https://github.com/mbostock/d3/wiki/Formatting#d3_format">d3.format()</a> function.
-   *
+   * Default is <code>d</code>.
+   * 
    * @see "https://github.com/mbostock/d3/wiki/Formatting#d3_format"
    * @param format a d3 format string for the labels of the y-axis
    */
   public void setYAxisFormat( String format ) {
     checkWidget();
-    if( this.yAxisFormat != format ) {
-      yAxisFormat = format;
+    if( format != null && !this.yAxisFormat.equals( format ) ) {
+      this.yAxisFormat = format;
       setOption( "yAxisFormat", format );
     }
   }
@@ -139,6 +148,155 @@ public class LineChart extends NvChart {
     return yAxisFormat;
   }
 
+  /**
+   * A master flag for turning chart interaction on and off. This overrides all tooltip, 
+   * voronoi, and guideline options. Default is <code>true</code>.
+   * 
+   * @param interactive whether chart interaction is turned on
+   */
+  public void setInteractive( boolean interactive ) {
+    checkWidget();
+    if( this.interactive != interactive ) {
+      this.interactive = interactive;
+      setOption( "interactive", interactive );
+    }
+  }
+  
+  /**
+   * Returns whether chart interaction is turned on.
+   * 
+   * @return <code>true</code> if chart interaction is turned on
+   */
+  public boolean isInteractive() {
+    checkWidget();
+    return this.interactive;
+  }
+
+  /**
+   * Controls the line interpolation between points, see the 
+   * <a href="https://github.com/mbostock/d3/wiki/SVG-Shapes#line_interpolate">D3 reference</a>
+   * for valid options. Default is <code>linear</code>.
+   * 
+   * @see "https://github.com/mbostock/d3/wiki/SVG-Shapes#line_interpolate"
+   * @param interpolate the line interpolation function 
+   */
+  public void setInterpolate( String interpolate ) {
+    checkWidget();
+    if( interpolate != null && !this.interpolate.equals( interpolate ) ) {
+      this.interpolate = interpolate;
+      setOption( "interpolate", interpolate );
+    }
+  }
+  
+  /**
+   * Returns the line interpolation function.
+   * 
+   * @return the line interpolation function
+   */
+  public String getInterpolate() {
+    checkWidget();
+    return this.interpolate;
+  }
+
+  /**
+   * Function to define if a line is a normal line or if it fills in the area. 
+   * Notice the default gets the value from the line's definition in data. 
+   * If a non-function is given, it the value is used for all lines. 
+   * Default is <code>false</code>.
+   * 
+   * @param area whether area below lines is filled.
+   */
+  public void setArea( boolean area ) {
+    checkWidget();
+    if( this.area != area ) {
+      this.area = area;
+      setOption( "isArea", area );
+    }
+  }
+
+  /**
+   * Returns whether area below lines is filled.
+   *  
+   * @return <code>true</code> if area is filled below lines.
+   */
+  public boolean isArea() {
+    checkWidget();
+    return this.area;
+  }
+
+  /**
+   * Sets the chart to use a guideline and floating tooltip instead of requiring 
+   * the user to hover over specific hotspots. Turning this on will set the 'interactive' 
+   * and 'useVoronoi' options to false to avoid conflicting. Default is <code>false</code>.
+   * 
+   * @param useInteractiveGuideline whether to use interactive guidelines
+   */
+  public void setUseInteractiveGuideline( boolean useInteractiveGuideline ) {
+    checkWidget();
+    if( this.useInteractiveGuideline != useInteractiveGuideline ) {
+      this.useInteractiveGuideline = useInteractiveGuideline;
+      setOption( "useInteractiveGuideline", useInteractiveGuideline );
+    }
+  }
+
+  /**
+   * Returns whether guidelines are interactive.
+   * 
+   * @return <code>true</code> if interactive guidelines are used
+   */
+  public boolean isUseInteractiveGuideline() {
+    checkWidget();
+    return useInteractiveGuideline;
+  }
+
+  /**
+   * Use voronoi diagram to select nearest point to display tooltip instead of 
+   * requiring a hover over the specific point itself. Setting this to <code>false</code> 
+   * will also set clipVoronoi to <code>false</code>. Default is <code>true</code>.
+   * 
+   * @param useVoronoi whether to determine nearest point for tooltips using voronoi diagram
+   */
+  public void setUseVoronoi( boolean useVoronoi ) {
+    checkWidget();
+    if( this.useVoronoi != useVoronoi ) {
+      this.useVoronoi = useVoronoi;
+      setOption( "useVoronoi", useVoronoi );
+    }
+  }
+  
+  /**
+   * Returns whether to determine nearest point for tooltips using voronoi diagram.
+   * 
+   * @return <code>true</code> if voronoi diagram is used to determine nearest point for tooltips
+   */
+  public boolean isUseVoronoi() {
+    checkWidget();
+    return this.useVoronoi;
+  }
+
+  /**
+   * Whether to pad the data. Default is <code>true</code>.
+   * 
+   * @param padData <code>true</code> if data is padded.
+   */
+  public void setPadData( boolean padData ) {
+    checkWidget();
+    if( this.padData != padData ) {
+      this.padData = padData;
+      setOption( "padData", padData );
+    }
+  }
+
+  /**
+   * Returns whether to pad the data.
+   * 
+   * @return <code>true</code> if data is padded
+   */
+  public boolean isPadData() {
+    checkWidget();
+    return this.padData;
+  }
+  
   /**
    * Sets the data items to display. Every item represents a separate line. Later changes to this
    * list won't be reflected. To change the chart data, call this method with a new list of items.

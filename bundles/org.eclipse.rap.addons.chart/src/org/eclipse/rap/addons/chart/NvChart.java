@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart;
 
+import org.eclipse.rap.addons.chart.internal.ColorUtil;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -37,6 +39,12 @@ public abstract class NvChart extends Chart {
   private static final String DEF_NVD3_CSS_URL
     = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css";
 
+  private String noData = null;
+  private boolean showLegend = true;
+  private boolean tooltipsEnabled = true;
+  private RGB[] colorScale = null;
+  private NvMargin margin = null;
+
   /**
    * Create a chart instance that is implemented by the given <code>renderer</code>.
    */
@@ -47,4 +55,122 @@ public abstract class NvChart extends Chart {
     requireCss( registerResource( "resources/nv-chart.css" ) );
   }
 
+  /**
+   * Message to display if no data items are provided. Default text is <code>No Data Available.</code>.
+   * 
+   * @param text the text to display when no data is available
+   */
+  public void setNoData( String text) {
+    checkWidget();
+    if ( text!=null && !text.equals( this.noData ) ) {
+      this.noData = text;
+      setOption( "noData", text );
+    }
+  }  
+  
+  /**
+   * Returns the text to display when no data is available.
+   * 
+   * @return the text to display when no data is available
+   */
+  public String getNoData() {
+    checkWidget();
+    return this.noData;
+  }
+
+  /**
+   * Whether to display the chart legend or not. Default is <code>true</code>.
+   * 
+   * @param show <code>true</code> if legend should be shown
+   */
+  public void setShowLegend( boolean show ) {
+    checkWidget();
+    if ( this.showLegend != show ) {
+      this.showLegend = show;
+      setOption( "showLegend", show );
+    }
+  }
+
+  /**
+   * Returns whether legend is shown for chart.
+   * 
+   * @return <code>true</code> if legend is shown
+   */
+  public boolean isShowLegend() {
+    checkWidget();
+    return this.showLegend;
+  }
+  
+  /**
+   * Whether tooltips are enabled or not. Default is <code>true</code>.
+   * 
+   * @param enabled <code>true</code> if tooltips are enabled
+   */
+  public void setTooltipsEnabled( boolean enabled ) {
+    checkWidget();
+    if ( this.tooltipsEnabled != enabled ) {
+      this.tooltipsEnabled = enabled;
+      setOption( "tooltip.enabled", enabled );
+    }
+  }
+
+  /**
+   * Returns whether tooltips are enabled for the chart.
+   * 
+   * @return <code>true</code> if tooltips are enabled
+   */
+  public boolean isTooltipsEnabled() {
+    checkWidget();
+    return this.tooltipsEnabled;
+  }  
+  
+  /**
+   * Sets the color scale to be used by the chart. This can be used alternatively
+   * to specifying the colors individually for every <code>DataItem</code>. 
+   * Default color scale used by nvd3 is category20.
+   * 
+   * @see "https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors" 
+   * @param colorScale the color scale as array of <code>RGB</code> values
+   */
+  public void setColorScale( RGB[] colorScale ) {
+    checkWidget();
+    if ( colorScale!=null && !colorScale.equals( this.colorScale ) ) {
+      this.colorScale = colorScale;
+      setOption( "colorScale", ColorUtil.colorsToJson( colorScale ) );
+    }
+  }  
+  
+  /**
+   * Returns the color scale of the chart.
+   * 
+   * @return the color scale, or null if nvd3 defaults applies
+   */
+  public RGB[] getColorScale() {
+    checkWidget();
+    return this.colorScale;
+  }
+  
+  /**
+   * Defines the margins for the chart component. Default is <code>0</code> for all margins.
+   * 
+   * @param margin object with margins of chart
+   */
+  public void setMargin( NvMargin margin ) {
+    checkWidget();
+    if ( margin!=null && !margin.equals( this.margin ) ) {
+      this.margin = margin;
+      setOption( "margin", margin.toJson());
+    }
+  }
+
+  /**
+   * Returns the margins of the chart.
+   * 
+   * @return the margins of the chart
+   */
+  public NvMargin getMargin() {
+    checkWidget();
+    return this.margin;
+  }
+  
 }

@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.internal;
 
+import org.eclipse.rap.json.JsonArray;
 import org.eclipse.swt.graphics.RGB;
 
 
@@ -30,6 +31,19 @@ public class ColorUtil {
     result.append( Integer.toHexString( red ) );
   }
 
+  /**
+   * Convert a sequence of colors to Json format.
+   * @param colors the color sequence as array
+   * @return the converted colors
+   */
+  public static JsonArray colorsToJson(RGB[] colors) {
+    JsonArray colorSequence = new JsonArray();
+    for (RGB color : colors) {
+      colorSequence.add( toHtmlString( color ) );
+    }
+    return colorSequence;
+  }
+  
   private ColorUtil() {
     // prevent instantiation
   }

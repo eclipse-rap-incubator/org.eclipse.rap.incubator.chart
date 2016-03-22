@@ -12,3 +12,7 @@
 .nvtooltip {
   z-index: 1000000;
 }
+
+.nvd3.nv-pie .nv-pie-title {
+  fill: rgba(0,0,0,0.75);
+}

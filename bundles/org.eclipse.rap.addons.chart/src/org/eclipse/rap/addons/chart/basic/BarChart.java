@@ -31,6 +31,11 @@ import org.eclipse.swt.widgets.Composite;
 public class BarChart extends NvChart {
 
   private boolean showValues = true;
+  private boolean showXAxis = true;
+  private boolean showYAxis = true;
+  private String xAxisLabel = "";
+  private String yAxisLabel = "";
+  private boolean staggerLabels = false;
 
   /**
    * Creates a new empty BarChart.
@@ -41,7 +46,8 @@ public class BarChart extends NvChart {
   }
 
   /**
-   * Whether the y values should be displayed in the chart. The default is <code>true</code>.
+   * Whether the y values should be displayed in the chart. Only recommended to use 
+   * if there aren't many bars. The default is <code>true</code>.
    *
    * @param show <code>true</code> to display y values
    */
@@ -63,6 +69,122 @@ public class BarChart extends NvChart {
     return showValues;
   }
 
+  /**
+   * Sets the X axis label. Default is empty.
+   * 
+   * @param label the label text
+   */
+  public void setXAxisLabel( String label ) {
+    checkWidget();
+    if ( label != null && !this.xAxisLabel.equals( label ) ) {
+      this.xAxisLabel = label;
+      setOption( "xAxis.axisLabel", label );
+    }
+  }
+  
+  /**
+   * Returns the X axis label.
+   * 
+   * @return the label for the X axis.
+   */
+  public String getXAxisLabel() {
+    checkWidget();
+    return this.xAxisLabel;
+  }
+
+  /**
+   * Sets the Y axis label. Default is empty.
+   * 
+   * @param label the label text
+   */
+  public void setYAxisLabel( String label ) {
+    checkWidget();
+    if ( label != null && !this.yAxisLabel.equals( label ) ) {
+      this.yAxisLabel = label;
+      setOption( "yAxis.axisLabel", label );
+    }
+  }  
+  
+  /**
+   * Returns the X axis label.
+   * 
+   * @return the label for the Y axis
+   */
+  public String getYAxisLabel() {
+    checkWidget();
+    return this.yAxisLabel;
+  }
+
+  /**
+   * Display or hide the X axis. Default is <code>true</code>.
+   * 
+   * @param show <code>true</code> to display X axis
+   */
+  public void setShowXAxis( boolean show ) {
+    checkWidget();
+    if( this.showXAxis != show ) {
+      this.showXAxis = show;
+      setOption( "showXAxis", show );
+    }
+  }
+
+  /**
+   * Returns whether X axis is displayed in chart.
+   * 
+   * @return <code>true</code> if X axis is displayed.
+   */
+  public boolean isShowXAxis() {
+    checkWidget();
+    return this.showXAxis;
+  }
+
+  /**
+   * Display or hide the Y axis. Default is <code>true</code>.
+   * 
+   * @param show <code>true</code> to display Y axis
+   */
+  public void setShowYAxis( boolean show ) {
+    checkWidget();
+    if( this.showYAxis != show ) {
+      this.showYAxis = show;
+      setOption( "showYAxis", show );
+    }
+  }
+
+  /**
+   * Returns whether Y axis is displayed in chart.
+   * 
+   * @return <code>true</code> if Y axis is displayed.
+   */
+  public boolean isShowYAxis() {
+    checkWidget();
+    return this.showYAxis;
+  }
+
+  /**
+   * Makes the X labels stagger at different distances from the axis so 
+   * they are less likely to overlap. Default is <code>false</code>.
+   * 
+   * @param staggerLabels <code>true</code> to display labels in staggered layout.
+   */
+  public void setStaggerLabels( boolean staggerLabels ) {
+    checkWidget();
+    if( this.staggerLabels != staggerLabels ) {
+      this.staggerLabels = staggerLabels;
+      setOption( "staggerLabels", staggerLabels );
+    }
+  }
+  
+  /**
+   * Returns whether labels are displayed in staggered layout.
+   * 
+   * @return <code>true</code> if labels are displayed in staggered layout.
+   */
+  public boolean isStaggerLabels() {
+    checkWidget();
+    return this.staggerLabels;
+  }  
+  
   /**
    * Sets the data items to display. Later changes to this list won't be reflected. To change the
    * chart data, call this method with a new list of items.

@@ -31,7 +31,12 @@ import org.eclipse.swt.widgets.Composite;
 public class PieChart extends NvChart {
 
   private boolean showLabels = true;
-  private boolean donut;
+  private boolean labelsOutside = false; 
+  private boolean growOnHover = true;
+  private boolean labelSunbeamLayout = false;
+  private double labelThreshold = 0.02D;
+  private String labelType = "key";
+  private String legendPosition = "top";
 
   /**
    * Creates a new empty Pie chart.
@@ -65,26 +70,147 @@ public class PieChart extends NvChart {
   }
 
   /**
-   * Sets whether this chart should be displayed as a donut chart. The default is
-   * <code>false</code>.
-   *
-   * @param donut <code>true</code> to display as a donut chart
+   * Whether chart labels should be outside the slices instead of inside them.
+   * Default is <code>true</code>.
+   * 
+   * @param labelsOutside <code>true</code> to show labels outside of slices
    */
-  public void setDonut( boolean donut ) {
-    if( this.donut != donut ) {
-      this.donut = donut;
-      setOption( "donut", donut );
+  public void setLabelsOutside( boolean labelsOutside ) {
+    checkWidget();
+    if ( this.labelsOutside != labelsOutside ) {
+      this.labelsOutside = labelsOutside;
+      setOption( "labelsOutside", labelsOutside );
     }
   }
 
   /**
-   * Returns whether this chart is displayed as a donut chart.
-   *
-   * @return <code>true</code> if displayed as a donut chart
+   * Returns whether labels are shown outside of slices.
+   * 
+   * @return <code>true</code> if labels are shown outside of slices
    */
-  public boolean getDonut() {
-    return donut;
+  public boolean isLabelsOutside() {
+    checkWidget();
+    return this.labelsOutside;
   }
+
+  /**
+   * Whether to increase slice radius on hover or not. Default is <code>true</code>.
+   * 
+   * @param growOnHover <code>true</code> if slices should increase on hover
+   */
+  public void setGrowOnHover( boolean growOnHover ) {
+    checkWidget();
+    if ( this.growOnHover != growOnHover ) {
+      this.growOnHover = growOnHover;
+      setOption( "growOnHover", growOnHover );
+    }
+  }
+
+  /**
+   * Returns whether to increase slice radius on hover.
+   * 
+   * @return <code>true</code> if slices should increase on hover
+   */
+  public boolean isGrowOnHover() {
+    checkWidget();
+    return this.growOnHover;
+  }
+
+  /**
+   * Whether item labels are drawn in sunbeam layout instead of horizontally.
+   * Default is <code>false</code>.
+   * 
+   * @param labelSunbeamLayout <code>true</code> if labels are drawn in sunbeam layout
+   */
+  public void setLabelSunbeamLayout( boolean labelSunbeamLayout ) {
+    checkWidget();
+    if ( this.labelSunbeamLayout != labelSunbeamLayout ) {
+      this.labelSunbeamLayout = labelSunbeamLayout;
+      setOption( "labelSunbeamLayout", labelSunbeamLayout );
+    }
+  }
+
+  /**
+   * Returns whether labels are drawn in sunbeam layout or not.
+   * 
+   * @return <code>true</code> if labels are drawn in sunbeam layout
+   */
+  public boolean isLabelSunbeamLayout() {
+    checkWidget();
+    return this.labelSunbeamLayout;
+  }
+  
+  /**
+   * The slice threshold size (as percentage of the chart) to not display the label 
+   * because it would be too small of a space. Default is 0.02, i.e. 2% of chart size.
+   * 
+   * @param labelThreshold the threshold size
+   */
+  public void setLabelThreshold( double labelThreshold ) {
+    checkWidget();
+    if ( this.labelThreshold != labelThreshold ) {
+      this.labelThreshold = labelThreshold;
+      setOption( "labelThreshold", labelThreshold );
+    }
+  }
+
+  /**
+   * Returns the slice threshold size for labels to be displayed.
+   * 
+   * @return the label threshold size
+   */
+  public double getLabelThreshold() {
+    checkWidget();
+    return this.labelThreshold;
+  }
+  
+  /**
+   * What kind of data to display for the slice labels. Valid options are <code>key</code>, 
+   * <code>value</code>, or <code>percent</code>. Default is <code>key</code>.
+   * 
+   * @param labelType the kind of data to be displayed as labels
+   */
+  public void setLabelType ( String labelType ) {
+    checkWidget();
+    if ( labelType != null && !this.labelType.equals( labelType ) ) {
+      this.labelType = labelType;
+      setOption( "labelType", labelType );
+    }
+  }
+
+  /**
+   * Returns the kind of data to be displayed as labels.
+   * 
+   * @return the labelType the kind of data to be displayed as labels
+   */
+  public String getLabelType() {
+    checkWidget();
+    return this.labelType;
+  }
+
+  /**
+   * Position of the chart legend. Valid options are <code>top</code> or <code>right</code>.
+   * Default is <code>top</code>.
+   * 
+   * @param legendPosition the position of the legend
+   */
+  public void setLegendPosition ( String legendPosition ) {
+    checkWidget();
+    if ( legendPosition != null && !this.legendPosition.equals( legendPosition ) ) {
+      this.legendPosition = legendPosition;
+      setOption( "legendPosition", legendPosition );
+    }
+  }
+
+  /**
+   * Returns the position of the chart legend.
+   * 
+   * @return the position of the legend.
+   */
+  public String getLegendPosition() {
+    checkWidget();
+    return this.legendPosition;
+  }  
 
   /**
    * Sets the data items to display. Later changes to this list won't be reflected. To change the
