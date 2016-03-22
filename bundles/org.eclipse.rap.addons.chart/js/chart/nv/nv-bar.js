@@ -17,5 +17,8 @@ rwt.chart.register( "nv-bar", function( widget ) {
   chart.discretebar.dispatch.on( "elementClick.rap", function( item ) {
     widget.notifySelection( item.index );
   });
+  chart.colorScale = function( value ) {
+    return chart.color( d3.scale.ordinal().range( value ).range() );
+  };
   return chart;
 });

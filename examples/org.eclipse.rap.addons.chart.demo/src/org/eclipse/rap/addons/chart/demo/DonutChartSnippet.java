@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2016 EclipseSource and others.
+ * Copyright (c) 2016 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@ package org.eclipse.rap.addons.chart.demo;
 import static org.eclipse.rap.addons.chart.Colors.CATEGORY10;
 
 import org.eclipse.rap.addons.chart.basic.DataItem;
-import org.eclipse.rap.addons.chart.basic.PieChart;
+import org.eclipse.rap.addons.chart.basic.DonutChart;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -25,25 +25,25 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
-public class PieChartSnippet extends AbstractEntryPoint {
+public class DonutChartSnippet extends AbstractEntryPoint {
 
-  private PieChart pieChart;
+  private DonutChart donutChart;
 
   @Override
   public void createContents( Composite parent ) {
     parent.setLayout( new GridLayout() );
-    createPieChart( parent );
+    createDonutChart( parent );
     createUpdateButton( parent );
     update();
   }
 
-  private void createPieChart( Composite parent ) {
-    pieChart = new PieChart( parent, SWT.NONE );
-    pieChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
-    pieChart.addListener( SWT.Selection, new Listener() {
+  private void createDonutChart( Composite parent ) {
+    donutChart = new DonutChart( parent, SWT.NONE );
+    donutChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
+    donutChart.addListener( SWT.Selection, new Listener() {
       @Override
       public void handleEvent( Event event ) {
-        System.out.println( "Selected pie item #" + event.index );
+        System.out.println( "Selected donut item #" + event.index );
       }
     } );
   }
@@ -60,7 +60,7 @@ public class PieChartSnippet extends AbstractEntryPoint {
   }
 
   private void update() {
-    pieChart.setItems( createItems() );
+    donutChart.setItems( createItems() );
   }
 
   private static DataItem[] createItems() {

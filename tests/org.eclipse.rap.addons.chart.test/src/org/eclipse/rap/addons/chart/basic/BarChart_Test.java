@@ -10,10 +10,16 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.basic;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.eclipse.rap.json.JsonObject;
 import org.eclipse.rap.json.JsonValue;
@@ -27,11 +33,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 @SuppressWarnings( "restriction" )
@@ -70,7 +71,7 @@ public class BarChart_Test {
     assertTrue( chart.getShowValues() );
   }
 
-  @Test
+ @Test
   public void testSetShowValues_changesValue() {
     chart.setShowValues( false );
 
@@ -79,17 +80,122 @@ public class BarChart_Test {
 
   @Test
   public void testSetShowValues_isRendered() {
-    reset( remoteObject );
-
     chart.setShowValues( false );
 
     verify( remoteObject ).call( "setOptions", new JsonObject().add( "showValues", false ) );
   }
 
   @Test
-  public void testSetItems() {
-    reset( remoteObject );
+  public void testGetShowXAxis_defaultsToTrue() {
+    assertTrue( chart.getShowXAxis() );
+  }
 
+  @Test
+  public void testSetShowXAxis_changesValue() {
+    chart.setShowXAxis( false );
+
+    assertFalse( chart.getShowXAxis() );
+  }
+
+  @Test
+  public void testSetShowXAxis_isRendered() {
+    chart.setShowXAxis( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "showXAxis", false ) );
+  }
+
+  @Test
+  public void testGetShowYAxis_defaultsToTrue() {
+    assertTrue( chart.getShowYAxis() );
+  }
+
+  @Test
+  public void testSetShowYAxis_changesValue() {
+    chart.setShowYAxis( false );
+
+    assertFalse( chart.getShowYAxis() );
+  }
+
+  @Test
+  public void testSetShowYAxis_isRendered() {
+    chart.setShowYAxis( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "showYAxis", false ) );
+  }
+
+  @Test
+  public void testGetXAxisLabel_hasDefault() {
+    assertEquals( "", chart.getXAxisLabel() );
+  }
+
+  @Test
+  public void testSetXAxisLabel_changesValue() {
+    chart.setXAxisLabel( "foo" );
+
+    assertEquals( "foo", chart.getXAxisLabel() );
+  }
+
+  @Test
+  public void testSetXAxisLabel_isRendered() {
+    chart.setXAxisLabel( "foo" );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "xAxis.axisLabel", "foo" ) );
+  }
+
+  @Test
+  public void testSetXAxisLabel_notRenderedIfUnchanged() {
+    chart.setXAxisLabel( chart.getXAxisLabel() );
+
+    verify( remoteObject, times( 0 ) ).set( eq( "barWidth" ), anyInt() );
+  }
+
+  @Test
+  public void testGetYAxisLabel_hasDefault() {
+    assertEquals( "", chart.getYAxisLabel() );
+  }
+
+  @Test
+  public void testSetYAxisLabel_changesValue() {
+    chart.setYAxisLabel( "foo" );
+
+    assertEquals( "foo", chart.getYAxisLabel() );
+  }
+
+  @Test
+  public void testSetYAxisLabel_isRendered() {
+    chart.setYAxisLabel( "foo" );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "yAxis.axisLabel", "foo" ) );
+  }
+
+  @Test
+  public void testSetYAxisLabel_notRenderedIfUnchanged() {
+    chart.setYAxisLabel( chart.getYAxisLabel() );
+
+    verify( remoteObject, times( 0 ) ).set( eq( "barWidth" ), anyInt() );
+  }
+
+  @Test
+  public void testGetStaggerLabels_defaultsToFalse() {
+    assertFalse( chart.getStaggerLabels() );
+  }
+
+  @Test
+  public void testSetStaggerLabels_changesValue() {
+    chart.setStaggerLabels( true );
+
+    assertTrue( chart.getStaggerLabels() );
+  }
+
+  @Test
+  public void testSetStaggerLabels_isRendered() {
+    chart.setStaggerLabels( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "staggerLabels", true ) );
+  }
+
+ @Test
+  public void testSetItems() {
     chart.setItems( new DataItem( 23, "foo" ), new DataItem( 42, "bar" ) );
 
     String expected = "[ { \"values\": [ { \"value\": 23, \"label\": \"foo\" },"

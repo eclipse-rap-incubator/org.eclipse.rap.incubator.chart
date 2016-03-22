@@ -10,11 +10,11 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.demo;
 
-import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
+import static org.eclipse.rap.addons.chart.Colors.CATEGORY10;
 
-import org.eclipse.rap.addons.chart.basic.LineChart;
 import org.eclipse.rap.addons.chart.basic.DataGroup;
 import org.eclipse.rap.addons.chart.basic.DataItem;
+import org.eclipse.rap.addons.chart.basic.LineChart;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -68,8 +68,8 @@ public class LineChartSnippet extends AbstractEntryPoint {
 
   private static DataGroup[] createItems() {
     return new DataGroup[] {
-      new DataGroup( createRandomPoints(), "Series 1", CAT10_COLORS[ 0 ] ),
-      new DataGroup( createRandomPoints(), "Series 2", CAT10_COLORS[ 1 ] )
+      new DataGroup( createRandomPoints(), "Series 1", CATEGORY10[ 0 ] ),
+      new DataGroup( createRandomPoints(), "Series 2", CATEGORY10[ 1 ] )
     };
   }
 

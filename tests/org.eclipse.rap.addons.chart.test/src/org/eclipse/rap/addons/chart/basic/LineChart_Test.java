@@ -10,10 +10,16 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.basic;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.eclipse.rap.json.JsonObject;
 import org.eclipse.rap.json.JsonValue;
@@ -28,12 +34,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 @SuppressWarnings( "restriction" )
@@ -95,8 +95,6 @@ public class LineChart_Test {
 
   @Test
   public void testSetXAxisLabel_isRendered() {
-    reset( remoteObject );
-
     chart.setXAxisLabel( "foo" );
 
     verify( remoteObject ).call( "setOptions", new JsonObject().add( "xAxis.axisLabel", "foo" ) );
@@ -132,11 +130,9 @@ public class LineChart_Test {
 
   @Test
   public void testSetXAxisFormat_isRendered() {
-    reset( remoteObject );
+    chart.setXAxisFormat( "x" );
 
-    chart.setXAxisFormat( "d" );
-
-    verify( remoteObject ).call( "setOptions", new JsonObject().add( "xAxisFormat", "d" ) );
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "xAxisFormat", "x" ) );
   }
 
   @Test
@@ -147,9 +143,121 @@ public class LineChart_Test {
   }
 
   @Test
-  public void testSetItems() {
-    reset( remoteObject );
+  public void testIsInteractive_defaultsToTrue() {
+    assertTrue( chart.isInteractive() );
+  }
 
+  @Test
+  public void testSetInteractive_changesValue() {
+    chart.setInteractive( false );
+
+    assertFalse( chart.isInteractive() );
+  }
+
+  @Test
+  public void testSetInteractive_isRendered() {
+    chart.setInteractive( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "interactive", false ) );
+  }
+
+  @Test
+  public void testGetInterpolate_hasDefault() {
+    assertEquals( "linear", chart.getInterpolate() );
+  }
+
+  @Test
+  public void testSetInterpolate_changesValue() {
+    chart.setInterpolate( "foo" );
+
+    assertEquals( "foo", chart.getInterpolate() );
+  }
+
+  @Test
+  public void testSetInterpolate_isRendered() {
+    chart.setInterpolate( "foo" );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "interpolate", "foo" ) );
+  }
+
+  @Test
+  public void testGetArea_defaultsToFalse() {
+    assertFalse( chart.getArea() );
+  }
+
+  @Test
+  public void testSetArea_changesValue() {
+    chart.setArea( true );
+
+    assertTrue( chart.getArea() );
+  }
+
+  @Test
+  public void testSetArea_isRendered() {
+    chart.setArea( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "isArea", true ) );
+  }
+
+  @Test
+  public void testGetUseInteractiveGuideline_defaultsToFalse() {
+    assertFalse( chart.getUseInteractiveGuideline() );
+  }
+
+  @Test
+  public void testSetUseInteractiveGuideline_changesValue() {
+    chart.setUseInteractiveGuideline( true );
+
+    assertTrue( chart.getUseInteractiveGuideline() );
+  }
+
+  @Test
+  public void testSetUseInteractiveGuideline_isRendered() {
+    chart.setUseInteractiveGuideline( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "useInteractiveGuideline", true ) );
+  }
+
+  @Test
+  public void testGetUseVoronoi_defaultsToTrue() {
+    assertTrue( chart.getUseVoronoi() );
+  }
+
+  @Test
+  public void testSetUseVoronoi_changesValue() {
+    chart.setUseVoronoi( false );
+
+    assertFalse( chart.getUseVoronoi() );
+  }
+
+  @Test
+  public void testSetUseVoronoi_isRendered() {
+    chart.setUseVoronoi( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "useVoronoi", false ) );
+  }
+
+  @Test
+  public void testGetPadData_defaultsToTrue() {
+    assertTrue( chart.getPadData() );
+  }
+
+  @Test
+  public void testSetPadData_changesValue() {
+    chart.setPadData( false );
+
+    assertFalse( chart.getPadData() );
+  }
+
+  @Test
+  public void testSetPadData_isRendered() {
+    chart.setPadData( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "padData", false ) );
+  }
+
+  @Test
+  public void testSetItems() {
     chart.setItems( new DataGroup( new DataItem2D[] { new DataItem2D( 1, 2 ),
                                                       new DataItem2D( 3, 4 ) }, "foo" ),
                     new DataGroup( new DataItem2D[] { new DataItem2D( 2, 4 ),

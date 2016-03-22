@@ -10,10 +10,14 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.basic;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.eclipse.rap.json.JsonObject;
 import org.eclipse.rap.json.JsonValue;
@@ -27,11 +31,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 @SuppressWarnings( "restriction" )
@@ -79,38 +78,127 @@ public class PieChart_Test {
 
   @Test
   public void testSetShowLabels_isRendered() {
-    reset( remoteObject );
-
     chart.setShowLabels( false );
 
     verify( remoteObject ).call( "setOptions", new JsonObject().add( "showLabels", false ) );
   }
 
   @Test
-  public void testDonut_defaultValue() {
-    assertFalse( chart.getDonut() );
+  public void testIsLabelsOutside_defaultsToFalse() {
+    assertFalse( chart.isLabelsOutside() );
   }
 
   @Test
-  public void testDonut_changeValue() {
-    chart.setDonut( true );
+  public void testSetLabelsOutside_changesValue() {
+    chart.setLabelsOutside( true );
 
-    assertTrue( chart.getDonut() );
+    assertTrue( chart.isLabelsOutside() );
   }
 
   @Test
-  public void testDonut_isRendered() {
-    reset( remoteObject );
+  public void testSetLabelsOutside_isRendered() {
+    chart.setLabelsOutside( true );
 
-    chart.setDonut( true );
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "labelsOutside", true ) );
+  }
 
-    verify( remoteObject ).call( "setOptions", new JsonObject().add( "donut", true ) );
+  @Test
+  public void testGetGrowOnHover_defaultsToTrue() {
+    assertTrue( chart.getGrowOnHover() );
+  }
+
+  @Test
+  public void testSetGrowOnHover_changesValue() {
+    chart.setGrowOnHover( false );
+
+    assertFalse( chart.getGrowOnHover() );
+  }
+
+  @Test
+  public void testSetGrowOnHover_isRendered() {
+    chart.setGrowOnHover( false );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "growOnHover", false ) );
+  }
+
+  @Test
+  public void testGetLabelSunbeamLayout_defaultsToFalse() {
+    assertFalse( chart.getLabelSunbeamLayout() );
+  }
+
+  @Test
+  public void testSetLabelSunbeamLayout_changesValue() {
+    chart.setLabelSunbeamLayout( true );
+
+    assertTrue( chart.getLabelSunbeamLayout() );
+  }
+
+  @Test
+  public void testSetLabelSunbeamLayout_isRendered() {
+    chart.setLabelSunbeamLayout( true );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "labelSunbeamLayout", true ) );
+  }
+
+  @Test
+  public void testGetLabelThreshold_hasDefault() {
+    assertEquals( 0.02D, chart.getLabelThreshold(), 0.0 );
+  }
+
+  @Test
+  public void testSetLabelThreshold_changesValue() {
+    chart.setLabelThreshold( 0.0 );
+
+    assertEquals( 0.0, chart.getLabelThreshold(), 0.0 );
+  }
+
+  @Test
+  public void testSetLabelThreshold_isRendered() {
+    chart.setLabelThreshold( 0.0 );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "labelThreshold", 0.0 ) );
+  }
+
+  @Test
+  public void testGetLabelType_hasDefault() {
+    assertEquals( "key", chart.getLabelType() );
+  }
+
+  @Test
+  public void testSetLabelType_changesValue() {
+    chart.setLabelType( "foo" );
+
+    assertEquals( "foo", chart.getLabelType() );
+  }
+
+  @Test
+  public void testSetLabelType_isRendered() {
+    chart.setLabelType( "foo" );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "labelType", "foo" ) );
+  }
+
+  @Test
+  public void testGetLegendPosition_hasDefault() {
+    assertEquals( "top", chart.getLegendPosition() );
+  }
+
+  @Test
+  public void testSetLegendPosition_changesValue() {
+    chart.setLegendPosition( "foo" );
+
+    assertEquals( "foo", chart.getLegendPosition() );
+  }
+
+  @Test
+  public void testSetLegendPosition_isRendered() {
+    chart.setLegendPosition( "foo" );
+
+    verify( remoteObject ).call( "setOptions", new JsonObject().add( "legendPosition", "foo" ) );
   }
 
   @Test
   public void testSetItems() {
-    reset( remoteObject );
-
     chart.setItems( new DataItem( 23, "foo" ), new DataItem( 42, "bar" ) );
 
     String expected = "[{ \"value\": 23, \"label\": \"foo\" },"
