@@ -22,5 +22,8 @@ rwt.chart.register( "nv-line", function( widget ) {
   chart.yAxisFormat = function( value ) {
     return chart.yAxis.tickFormat( d3.format( value ) );
   };
+  chart.colorScale = function( value ) {
+    return chart.color( d3.scale.ordinal().range( value ).range() );
+  };
   return chart;
 });

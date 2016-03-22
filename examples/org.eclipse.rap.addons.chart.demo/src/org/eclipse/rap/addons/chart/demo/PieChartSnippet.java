@@ -11,10 +11,9 @@
 package org.eclipse.rap.addons.chart.demo;
 
 
+import static org.eclipse.rap.addons.chart.Colors.CATEGORY_10;
+
 import org.eclipse.rap.addons.chart.basic.DataItem;
-
-import static org.eclipse.rap.addons.chart.demo.Colors.CAT10_COLORS;
-
 import org.eclipse.rap.addons.chart.basic.PieChart;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
@@ -41,7 +40,6 @@ public class PieChartSnippet extends AbstractEntryPoint {
   private void createPieChart( Composite parent ) {
     pieChart = new PieChart( parent, SWT.NONE );
     pieChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
-    pieChart.setDonut( true );
     pieChart.addListener( SWT.Selection, new Listener() {
       @Override
       public void handleEvent( Event event ) {
@@ -67,11 +65,11 @@ public class PieChartSnippet extends AbstractEntryPoint {
 
   private static DataItem[] createItems() {
     return new DataItem[] {
-      new DataItem( Math.random() * 100, "Item 1", CAT10_COLORS[ 0 ] ),
-      new DataItem( Math.random() * 100, "Item 2", CAT10_COLORS[ 1 ] ),
-      new DataItem( Math.random() * 100, "Item 3", CAT10_COLORS[ 2 ] ),
-      new DataItem( Math.random() * 100, "Item 4", CAT10_COLORS[ 3 ] ),
-      new DataItem( Math.random() * 100, "Item 5", CAT10_COLORS[ 4 ] )
+      new DataItem( Math.random() * 100, "Item 1", CATEGORY_10[ 0 ] ),
+      new DataItem( Math.random() * 100, "Item 2", CATEGORY_10[ 1 ] ),
+      new DataItem( Math.random() * 100, "Item 3", CATEGORY_10[ 2 ] ),
+      new DataItem( Math.random() * 100, "Item 4", CATEGORY_10[ 3 ] ),
+      new DataItem( Math.random() * 100, "Item 5", CATEGORY_10[ 4 ] )
     };
   }
 

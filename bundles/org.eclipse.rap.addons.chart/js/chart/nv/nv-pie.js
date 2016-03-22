@@ -17,5 +17,8 @@ rwt.chart.register( "nv-pie", function( widget ) {
   chart.pie.dispatch.on( "elementClick.rap", function( item ) {
     widget.notifySelection( item.index );
   });
+  chart.colorScale = function( value ) {
+    return chart.color( d3.scale.ordinal().range( value ).range() );
+  };
   return chart;
 });

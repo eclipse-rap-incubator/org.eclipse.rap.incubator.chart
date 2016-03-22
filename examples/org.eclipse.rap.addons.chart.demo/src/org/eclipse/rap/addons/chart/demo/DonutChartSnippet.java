@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2016 EclipseSource and others.
+ * Copyright (c) 2016 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,11 @@
  ******************************************************************************/
 package org.eclipse.rap.addons.chart.demo;
 
+
 import static org.eclipse.rap.addons.chart.Colors.CATEGORY_10;
 
-import org.eclipse.rap.addons.chart.basic.DataGroup;
 import org.eclipse.rap.addons.chart.basic.DataItem;
-import org.eclipse.rap.addons.chart.basic.LineChart;
+import org.eclipse.rap.addons.chart.basic.DonutChart;
 import org.eclipse.rap.rwt.application.AbstractEntryPoint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -25,28 +25,25 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 
-public class LineChartSnippet extends AbstractEntryPoint {
+public class DonutChartSnippet extends AbstractEntryPoint {
 
-  private LineChart lineChart;
+  private DonutChart donutChart;
 
   @Override
   public void createContents( Composite parent ) {
     parent.setLayout( new GridLayout() );
-    createLineChart( parent );
+    createDonutChart( parent );
     createUpdateButton( parent );
     update();
   }
 
-  private void createLineChart( Composite parent ) {
-    lineChart = new LineChart( parent, SWT.NONE );
-    lineChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
-    lineChart.setXAxisLabel( "Time" );
-    lineChart.setYAxisLabel( "Radiation" );
-    lineChart.setYAxisFormat( "d" );
-    lineChart.addListener( SWT.Selection, new Listener() {
+  private void createDonutChart( Composite parent ) {
+    donutChart = new DonutChart( parent, SWT.NONE );
+    donutChart.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true ) );
+    donutChart.addListener( SWT.Selection, new Listener() {
       @Override
       public void handleEvent( Event event ) {
-        System.out.println( "Selected line item #" + event.index + ", point #" + event.detail );
+        System.out.println( "Selected donut item #" + event.index );
       }
     } );
   }
@@ -63,22 +60,17 @@ public class LineChartSnippet extends AbstractEntryPoint {
   }
 
   private void update() {
-    lineChart.setItems( createItems() );
+    donutChart.setItems( createItems() );
   }
 
-  private static DataGroup[] createItems() {
-    return new DataGroup[] {
-      new DataGroup( createRandomPoints(), "Series 1", CATEGORY_10[ 0 ] ),
-      new DataGroup( createRandomPoints(), "Series 2", CATEGORY_10[ 1 ] )
+  private static DataItem[] createItems() {
+    return new DataItem[] {
+      new DataItem( Math.random() * 100, "Item 1", CATEGORY_10[ 0 ] ),
+      new DataItem( Math.random() * 100, "Item 2", CATEGORY_10[ 1 ] ),
+      new DataItem( Math.random() * 100, "Item 3", CATEGORY_10[ 2 ] ),
+      new DataItem( Math.random() * 100, "Item 4", CATEGORY_10[ 3 ] ),
+      new DataItem( Math.random() * 100, "Item 5", CATEGORY_10[ 4 ] )
     };
-  }
-
-  private static DataItem[] createRandomPoints() {
-    DataItem[] values = new DataItem[100];
-    for( int i = 0; i < values.length; i++ ) {
-      values[i] = new DataItem( Math.random() * 100 );
-    }
-    return values;
   }
 
 }
