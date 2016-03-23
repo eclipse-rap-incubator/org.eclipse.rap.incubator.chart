@@ -26,6 +26,7 @@ public class ChartSnippetPage extends AbstractEntryPoint {
     createBarChart( parent );
     createPieChart( parent );
     createLineChart( parent );
+    createStackedMultiBarChart( parent );
   }
 
   private static void createBarChart( Composite parent ) {
@@ -50,6 +51,14 @@ public class ChartSnippetPage extends AbstractEntryPoint {
     composite.setBackground( new Color( parent.getDisplay(), 250, 250, 250 ) );
     composite.setBackgroundMode( SWT.INHERIT_DEFAULT );
     new LineChartSnippet().createContents( composite );
+  }
+
+  private static void createStackedMultiBarChart( Composite parent ) {
+    Composite composite = new Composite( parent, SWT.NONE );
+    composite.setLayoutData( new GridData( SWT.FILL, SWT.FILL, true, true, 2, 1 ) );
+    composite.setBackground( new Color( parent.getDisplay(), 250, 250, 250 ) );
+    composite.setBackgroundMode( SWT.INHERIT_DEFAULT );
+    new StackedMultiBarChartSnippet().createContents( composite );
   }
 
 }
