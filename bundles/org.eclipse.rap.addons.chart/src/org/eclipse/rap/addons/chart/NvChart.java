@@ -33,9 +33,9 @@ public abstract class NvChart extends Chart {
   private static final String PROP_NVD3_JS_URL = "org.eclipse.rap.addons.chart.nvd3JsUrl";
   private static final String PROP_NVD3_CSS_URL = "org.eclipse.rap.addons.chart.nvd3CssUrl";
   private static final String DEF_NVD3_JS_URL
-    = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js";
+    = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js";
   private static final String DEF_NVD3_CSS_URL
-    = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css";
+    = "https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.css";
 
   /**
    * Create a chart instance that is implemented by the given <code>renderer</code>.
