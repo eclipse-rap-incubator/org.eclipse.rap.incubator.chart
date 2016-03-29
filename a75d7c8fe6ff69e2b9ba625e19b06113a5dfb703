@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7dfcf21_f5dc7ede",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/StackedMultiBarChart.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-03-29T11:14:59Z",
+      "side": 1,
+      "message": "Rename it to getShowLegend",
+      "revId": "a75d7c8fe6ff69e2b9ba625e19b06113a5dfb703",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    }
+  ]
+}
