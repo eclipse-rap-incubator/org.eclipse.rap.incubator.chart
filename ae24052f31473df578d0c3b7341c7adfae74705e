@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7dfcf21_72fa44ea",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/Colors.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "Is this actually useful?",
+      "range": {
+        "startLine": 22,
+        "startChar": 28,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7dfcf21_12d4a061",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/Colors.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "no tabs, please",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7dfcf21_5209c8a1",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/Colors.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "CATEGORY_10, with an underscore, would be easier to read.",
+      "range": {
+        "startLine": 26,
+        "startChar": 28,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7dfcf21_72e3244e",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/NvChart.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "Methods called \"set no data\" and \"get no data\" sound funny. What is this property actually? If it\u0027s a message, wouldn\u0027t setNoDataMessage be more understandable?",
+      "range": {
+        "startLine": 67,
+        "startChar": 14,
+        "endLine": 67,
+        "endChar": 23
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7dfcf21_f2ed742f",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/NvChart.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "Why not simply `setColors`? As the colors aren\u0027t one of the scales of the coordinate system, I find this name a bit confusing. But I may be wrong.",
+      "range": {
+        "startLine": 139,
+        "startChar": 14,
+        "endLine": 139,
+        "endChar": 27
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7dfcf21_f2c814bc",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/PieChart.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "Does the prefix `is` instead of `get` fit with the RAP API?\n\nIt doesn\u0027t seem to be used consistently, see `getGrowOnHover` below.\n\nTo be correct English, I\u0027m afraid it would have to be `areLabelsOutside` ;-)",
+      "range": {
+        "startLine": 91,
+        "startChar": 17,
+        "endLine": 91,
+        "endChar": 32
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7dfcf21_92ba7026",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/resources/nv-chart.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-03-29T08:22:55Z",
+      "side": 1,
+      "message": "Are we starting to make adjustments to the nv styling? Should we?\nThe rule above is only a fix to make tooltips work inside RAP.",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 16,
+        "endChar": 5
+      },
+      "revId": "ae24052f31473df578d0c3b7341c7adfae74705e",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    }
+  ]
+}
