@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7dfcf21_77e53dc7",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/MapChart.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2295
+      },
+      "writtenOn": "2016-05-06T12:18:49Z",
+      "side": 1,
+      "message": "Something like resourcePath, jsonPath, topologyPath, etc. may be a bit clearer. However, since it\u0027s documented, I don\u0027t insist.",
+      "range": {
+        "startLine": 54,
+        "startChar": 55,
+        "endLine": 54,
+        "endChar": 59
+      },
+      "revId": "9b823142439b43d78c7bcb3b63e2a7c868df29eb",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    }
+  ]
+}
