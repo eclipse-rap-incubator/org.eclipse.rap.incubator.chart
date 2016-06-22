@@ -61,7 +61,7 @@ public class MapChart_Test {
     shell = new Shell( display );
     remoteObject = mock( RemoteObject.class );
     connection = fakeConnection( remoteObject );
-    chart = new MapChart( shell, SWT.NONE, "resources/world-110m.json" );
+    chart = new MapChart( shell, SWT.NONE );
   }
 
   @Test
@@ -69,7 +69,7 @@ public class MapChart_Test {
     JavaScriptLoader loader = mock( JavaScriptLoader.class );
     fakeLoader( loader );
 
-    new MapChart( shell, SWT.NONE, "resources/world-110m.json" );
+    new MapChart( shell, SWT.NONE );
 
     verify( loader ).require( DEF_TOPOJSON_JS_URL );
   }
@@ -80,7 +80,7 @@ public class MapChart_Test {
     fakeLoader( loader );
 
     System.setProperty( PROP_TOPOJSON_JS_URL, "custom://url" );
-    new MapChart( shell, SWT.NONE, "resources/world-110m.json" );
+    new MapChart( shell, SWT.NONE );
     System.clearProperty( PROP_TOPOJSON_JS_URL );
 
     verify( loader, never() ).require( DEF_TOPOJSON_JS_URL );
@@ -99,6 +99,13 @@ public class MapChart_Test {
   }
 
   @Test
+  public void testCreate_registeresGeoDataResource() {
+    new MapChart( shell, SWT.NONE );
+
+    assertTrue( RWT.getResourceManager().isRegistered( "resources/world-110m.json" ) );
+  }
+
+  @Test
   public void testCreate_createsRemoteObject() {
     verify( connection ).createRemoteObject( eq( "rwt.chart.Chart" ) );
   }
@@ -110,7 +117,16 @@ public class MapChart_Test {
 
   @Test
   public void testCreate_setsDataPath() {
-    JsonObject expected = new JsonObject().add( "dataPath", "resources/world-110m.json" );
+    JsonObject expected = new JsonObject()
+      .add( "dataPath", "rwt-resources/resources/world-110m.json" );
+    verify( remoteObject ).call( "setOptions", expected );
+  }
+
+  @Test
+  public void testCreate_setsDataPath_withCustomPath() {
+    new MapChart( shell, SWT.NONE, "foo/bar.json" );
+
+    JsonObject expected = new JsonObject().add( "dataPath", "foo/bar.json" );
     verify( remoteObject ).call( "setOptions", expected );
   }
 

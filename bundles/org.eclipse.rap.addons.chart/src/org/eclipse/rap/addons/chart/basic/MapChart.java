@@ -48,6 +48,21 @@ public class MapChart extends Chart {
    *
    * @param parent a composite control which will be the parent of the new instance (cannot be null)
    * @param style the style of control to construct
+   *
+   */
+  public MapChart( Composite parent, int style ) {
+    super( parent, style, "topojson-world" );
+    requireJs( System.getProperty( PROP_TOPOJSON_JS_URL, DEF_TOPOJSON_JS_URL ) );
+    requireJs( registerResource( "chart/topojson/topojson-world.js" ) );
+    requireCss( registerResource( "resources/topojson-world.css" ) );
+    setOption( "dataPath", registerResource( "resources/world-110m.json" ) );
+  }
+
+  /**
+   * Creates a new empty WorldMap chart.
+   *
+   * @param parent a composite control which will be the parent of the new instance (cannot be null)
+   * @param style the style of control to construct
    * @param path a resource path to registered topology geo data file (cannot be null or empty)
    *
    */
