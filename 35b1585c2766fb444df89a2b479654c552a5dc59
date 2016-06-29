@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "47b89bd4_cd56a955",
+        "filename": "bundles/org.eclipse.rap.addons.chart/src/org/eclipse/rap/addons/chart/basic/MapChart.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-06-29T07:46:33Z",
+      "side": 1,
+      "message": "Using this(parent, style, registerResource(...));  requires registerResource to be static, but it\u0027s not.",
+      "parentUuid": "47b89bd4_4d6b7910",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "35b1585c2766fb444df89a2b479654c552a5dc59",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47b89bd4_6d603d2a",
         "filename": "examples/org.eclipse.rap.addons.chart.demo/src/resources/world-110m.json",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2016-06-29T07:35:38Z",
       "side": 1,
       "message": "Why is this file added twice?",
+      "revId": "35b1585c2766fb444df89a2b479654c552a5dc59",
+      "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47b89bd4_ed536d62",
+        "filename": "examples/org.eclipse.rap.addons.chart.demo/src/resources/world-110m.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2304
+      },
+      "writtenOn": "2016-06-29T07:46:33Z",
+      "side": 1,
+      "message": "I kept the example like before to demonstrate how to exchange the Geo data file. In this particular case it\u0027s the same file.",
+      "parentUuid": "47b89bd4_6d603d2a",
       "revId": "35b1585c2766fb444df89a2b479654c552a5dc59",
       "serverId": "97ee7c02-f12f-4043-b43e-dea463d88b31",
       "unresolved": false
